@@ -34,9 +34,8 @@ class RegisterPage extends Component {
   }
 
   onRadioChange = (e) => {
-    console.log(this.state)
     this.setState({
-      type: e.target.value
+      accountType: e.target.value
     });
   }
 
@@ -90,10 +89,10 @@ class RegisterPage extends Component {
             <label htmlFor="type">
               Patron:
               <input
-                  type="radio"
-                  value="patron"
-                  checked={this.state.accountType === "patron"}
-                  onChange={this.onRadioChange}
+                 type="radio"
+                 value="patron"
+                 checked={this.state.accountType === "patron"}
+                 onChange={this.onRadioChange}
                 />
             </label>
           </div>
