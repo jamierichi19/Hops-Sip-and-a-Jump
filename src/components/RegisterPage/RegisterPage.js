@@ -5,6 +5,8 @@ class RegisterPage extends Component {
   state = {
     username: '',
     password: '',
+    email: '',
+    accountType: 'patron'
   };
 
   registerUser = (event) => {
@@ -16,6 +18,8 @@ class RegisterPage extends Component {
         payload: {
           username: this.state.username,
           password: this.state.password,
+          email: this.state.email,
+          accountType: this.state.accountType
         },
       });
     } else {
@@ -26,6 +30,13 @@ class RegisterPage extends Component {
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
       [propertyName]: event.target.value,
+    });
+  }
+
+  onRadioChange = (e) => {
+    console.log(this.state)
+    this.setState({
+      type: e.target.value
     });
   }
 
@@ -54,6 +65,17 @@ class RegisterPage extends Component {
             </label>
           </div>
           <div>
+            <label htmlFor="email">
+              Email:
+              <input
+                type="text"
+                name="email"
+                value={this.state.email}
+                onChange={this.handleInputChangeFor('email')}
+              />
+            </label>
+          </div>
+          <div>
             <label htmlFor="password">
               Password:
               <input
@@ -62,6 +84,28 @@ class RegisterPage extends Component {
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
               />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="type">
+              Patron:
+              <input
+                  type="radio"
+                  value="patron"
+                  checked={this.state.accountType === "patron"}
+                  onChange={this.onRadioChange}
+                />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="type">
+              Owner:
+              <input
+                  type="radio"
+                  value="owner"
+                  checked={this.state.accountType === "owner"}
+                  onChange={this.onRadioChange}
+                />
             </label>
           </div>
           <div>
