@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import {connect} from 'react-redux';
 
 class BreweryForm extends Component {
 
@@ -8,13 +9,24 @@ class BreweryForm extends Component {
         street: '',
         city: '',
         state: '',
-        zip: ''
+        zip: '',
+        id: this.props.user.id
     };
 
     addBrewery = (event) => {
         event.preventDefault();
         console.log(this.state)
-      } 
+        this.props.dispatch({ type: 'ADD_BREWERY', payload: this.state });
+        this.setState({
+            name: '',
+            bio: '',
+            street: '',
+            city: '',
+            state: '',
+            zip: '',
+        })
+
+    } 
 
     handleInputChangeFor = propertyName => (event) => {
         this.setState({
@@ -80,7 +92,7 @@ class BreweryForm extends Component {
                     </div>
                     <div>
                         <input
-                            type="text"
+                            type="number"
                             name="zip"
                             label="zip"
                             placeholder="zip"
@@ -99,4 +111,8 @@ class BreweryForm extends Component {
     }
 }
 
-export default BreweryForm;
+const mapStateToProps = state => ({
+    user: state.user,
+  });
+  
+export default connect(mapStateToProps)(BreweryForm);

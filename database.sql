@@ -13,7 +13,7 @@ CREATE TABLE "user" (
 
 CREATE TABLE "brewery_info"(
 	"id" SERIAL PRIMARY KEY,
-	"name" VARCHAR (80) NOT NULL,
+	"brewery_name" VARCHAR (80) NOT NULL,
 	"bio" VARCHAR (500),
 	"street" VARCHAR(80),
 	"city" VARCHAR (80),
