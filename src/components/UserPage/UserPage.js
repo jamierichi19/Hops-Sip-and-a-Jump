@@ -1,5 +1,6 @@
 import React, { Component }  from 'react';
 import { connect } from 'react-redux';
+import BreweryForm from '../BreweryForm/BreweryForm'
 
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
@@ -10,7 +11,7 @@ export class UserPage extends Component {
 
     const homePage = this.props.user.type === 'patron'  ? (
     <p>hello {this.props.user.type}</p>
-    ) : ( <p>hello {this.props.user.type}</p>);
+    ) : ( <BreweryForm />);
 
     return (
       <div>
