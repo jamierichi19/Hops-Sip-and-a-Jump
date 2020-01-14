@@ -6,7 +6,7 @@ const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 
 //GET route for image
 router.get('/', rejectUnauthenticated, (req, res) => {
-    pool.query(`SELECT * FROM "brewery_image" WHERE "user_id" = $1;`, [req.user.id])
+    pool.query(`SELECT * FROM "brewery_info" WHERE "user_id" = $1;`, [req.user.id])
         .then(results => res.send(results.rows))
         .catch(error => {
             console.log('Error GETTING shelf:', error);
