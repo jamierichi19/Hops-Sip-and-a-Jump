@@ -16,6 +16,7 @@ class MyBreweries extends Component {
                 <img key={item.id} src={item.image_url} alt={item.id} width="25%" height="25%" />
                 )})
             }
+            <hr />
             </>
         )
     }

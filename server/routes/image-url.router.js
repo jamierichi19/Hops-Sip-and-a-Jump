@@ -6,7 +6,6 @@ const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 
 //GET route for image
 router.get('/', (req, res) => {
-    console.log('req.user:', req.user);
     pool.query(`SELECT * FROM "brewery_image" WHERE "user_id" = $1;`, [req.user.id])
         .then(results => res.send(results.rows))
         .catch(error => {

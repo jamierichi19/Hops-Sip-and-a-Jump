@@ -2,6 +2,7 @@ import React, { Component, Fragment }  from 'react';
 import { connect } from 'react-redux';
 import BreweryForm from '../BreweryForm/BreweryForm';
 import MyBreweries from '../MyBreweries/MyBreweries';
+import Email from '../Email/Email';
 
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
@@ -16,6 +17,7 @@ export class UserPage extends Component {
     <Fragment>
       <BreweryForm /> 
       <MyBreweries />
+      <Email />
     </Fragment>
     );
 
