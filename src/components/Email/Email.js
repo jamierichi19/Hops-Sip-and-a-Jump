@@ -30,6 +30,7 @@ class Email extends Component {
                 <div>
                     <button>Send</button>
                 </div>
+                <hr />
             </div>
         )
     }

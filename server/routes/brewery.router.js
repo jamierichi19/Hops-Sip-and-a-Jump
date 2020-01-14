@@ -19,4 +19,14 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     .catch(() => res.sendStatus(500))
 });
 
+//POST route for uploading image
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+    const imageUrl = req.body.imageUrl;
+    const id = req.params.id;
+    const queryString = `UPDATE "brewery_info" SET "image_url" = $1 where user_id = $2;`;
+    pool.query(queryString, [imageUrl, id])
+    .then(() => res.sendStatus(201))
+    .catch(() => res.sendStatus(500))
+});
+
 module.exports = router;

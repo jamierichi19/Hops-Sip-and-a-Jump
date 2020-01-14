@@ -19,6 +19,7 @@ CREATE TABLE "brewery_info"(
 	"city" VARCHAR (80),
 	"state" VARCHAR (80),
 	"zip" INT,
+	"image_url" VARCHAR(100),
 	"user_id" INT REFERENCES "user"
 );
 
@@ -35,8 +36,3 @@ CREATE TABLE "comments" (
 	"flag" BOOLEAN 
 );
 
-CREATE TABLE "brewery_image" (
-	"id" SERIAL PRIMARY KEY,
-	"image_url" VARCHAR (200),
-	"user_id" INT REFERENCES "user"
-);
