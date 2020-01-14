@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class MyBreweries extends Component {
 
@@ -11,11 +12,13 @@ class MyBreweries extends Component {
         return (
             <>
             <h2>My Breweries:</h2>
-            {this.props.imageReducer.map((item, i) => {
-                return (
-                <img key={item.id} src={item.image_url} alt={item.id} width="25%" height="25%" />
-                )})
-            }
+            <Link to="/details">
+                {this.props.imageReducer.map((item, i) => {
+                    return (
+                    <img key={item.id} src={item.image_url} alt={item.id} width="25%" height="25%" />
+                    )})
+                }
+            </Link>
             <hr />
             </>
         )
@@ -24,6 +27,6 @@ class MyBreweries extends Component {
 
 const putReduxStateOnProps = (reduxStore) => ({
     imageReducer: reduxStore.imageReducer
-})
+});
 
 export default connect(putReduxStateOnProps)(MyBreweries);

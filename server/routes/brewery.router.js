@@ -19,7 +19,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     .catch(() => res.sendStatus(500))
 });
 
-//POST route for uploading image
+//PUT route for uploading image
 router.put('/:id', rejectUnauthenticated, (req, res) => {
     const imageUrl = req.body.imageUrl;
     const id = req.params.id;
