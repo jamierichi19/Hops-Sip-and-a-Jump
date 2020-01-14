@@ -12,7 +12,7 @@ function* getImage() {
 }
 
 function* getImageSaga() {
-    yield takeLatest('GET_IMAGE', getImage)
+    yield takeLatest('GET_BREWERY_IMAGE', getImage)
 }
 
 export default getImageSaga;
