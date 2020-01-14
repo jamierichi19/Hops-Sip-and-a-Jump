@@ -38,6 +38,5 @@ CREATE TABLE "comments" (
 CREATE TABLE "brewery_image" (
 	"id" SERIAL PRIMARY KEY,
 	"image_url" VARCHAR (200),
-	"brewery_id" INT REFERENCES "brewery_info"
-
+	"user_id" INT REFERENCES "user"
 );

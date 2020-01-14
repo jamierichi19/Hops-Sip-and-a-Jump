@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import {connect} from 'react-redux';
+import DropzoneS3Uploader from 'react-dropzone-s3-uploader';
 
 class BreweryForm extends Component {
 
@@ -26,15 +27,29 @@ class BreweryForm extends Component {
             zip: '',
         })
 
-    } 
+    }; 
 
     handleInputChangeFor = propertyName => (event) => {
         this.setState({
           [propertyName]: event.target.value,
         });
+    };
+
+    handleFinishedUpload = info => {
+        // console.log('File uploaded with filename', info.filename)
+        console.log('Access it on s3 at', info.fileUrl)
+        this.props.dispatch({ type: 'POST_IMAGE_URL', payload: info.fileUrl})
     }
 
     render() {
+
+        const uploadOptions = {
+            server: 'http://localhost:5000',
+            // signingUrlQueryParams: {uploadType: 'avatar'},
+        }
+
+        const s3Url = 'https://jamiebucket19.s3.amazonaws.com'
+
         return (
             <Fragment>
                 <h2>Enter Your Brewery:</h2>
@@ -106,6 +121,15 @@ class BreweryForm extends Component {
                         </button>
                     </div>
                 </form>
+                <div>
+                <DropzoneS3Uploader
+                onFinish={this.handleFinishedUpload}
+                s3Url={s3Url}
+                maxSize={1024 * 1024 * 5}
+                upload={uploadOptions}
+                />
+                </div>
+                <hr />
             </Fragment>
         )
     }
