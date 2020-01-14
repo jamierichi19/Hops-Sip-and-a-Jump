@@ -4,8 +4,16 @@ const router = express.Router();
 const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 
 
-
-
+//GET route for image
+router.get('/', (req, res) => {
+    console.log('req.user:', req.user);
+    pool.query(`SELECT * FROM "brewery_image" WHERE "user_id" = $1;`, [req.user.id])
+        .then(results => res.send(results.rows))
+        .catch(error => {
+            console.log('Error GETTING shelf:', error);
+            res.sendStatus(500);
+    });
+});
 
 //POST route for uploading image
 router.post('/', rejectUnauthenticated, (req, res) => {
