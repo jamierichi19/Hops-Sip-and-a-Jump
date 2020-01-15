@@ -13,7 +13,7 @@ function* postImageUrl(action) {
         }
 
         yield axios.put(`/api/brewery/${action.payload.id}`, data, config);
-        yield put({type: 'GET_IMAGE'})
+        yield put({type: 'GET_BREWERY_IMAGE'})
     } catch (error) {
         console.log('Image URL post failed', error);
     }

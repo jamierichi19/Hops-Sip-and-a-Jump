@@ -5,6 +5,7 @@ import userSaga from './userSaga';
 import addBrewerySaga from './addBrewerySaga';
 import imageInfoSaga from './imageInfoSaga';
 import getImageSaga from './getImageSaga';
+import deleteBrewerySaga from './deleteBrewerySaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -21,5 +22,6 @@ export default function* rootSaga() {
     addBrewerySaga(),
     imageInfoSaga(),
     getImageSaga(),
+    deleteBrewerySaga(),
   ]);
 }
