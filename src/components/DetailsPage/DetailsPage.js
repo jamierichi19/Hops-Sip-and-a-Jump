@@ -21,18 +21,22 @@ class DetailsPage extends Component {
             <div>
                 <h2>What are they Saying?</h2>
                 <table>
-                    <tr>
-                        <th>Username</th>
-                        <th>Comment</th>
-                    </tr>
-                {this.props.commentsReducer.map((item, i) => {
-                        return (
-                        <tr key={item.comment_id}>
-                            <td>{item.username}</td>
-                            <td>{item.comment_body}</td>
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Comment</th>
                         </tr>
-                        )})
-                    }
+                    </thead>
+                    <tbody>
+                        {this.props.commentsReducer.map((item, i) => {
+                                return (
+                                <tr key={item.comment_id}>
+                                    <td>{item.username}</td>
+                                    <td>{item.comment_body}</td>
+                                </tr>
+                                )})
+                            }
+                    </tbody>
                 </table>
             </div>
             </Fragment>
