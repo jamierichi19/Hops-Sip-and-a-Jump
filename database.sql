@@ -13,12 +13,13 @@ CREATE TABLE "user" (
 
 CREATE TABLE "brewery_info"(
 	"id" SERIAL PRIMARY KEY,
-	"name" VARCHAR (80) NOT NULL,
+	"brewery_name" VARCHAR (80) NOT NULL,
 	"bio" VARCHAR (500),
 	"street" VARCHAR(80),
 	"city" VARCHAR (80),
 	"state" VARCHAR (80),
 	"zip" INT,
+	"image_url" VARCHAR(100),
 	"user_id" INT REFERENCES "user"
 );
 
@@ -35,9 +36,3 @@ CREATE TABLE "comments" (
 	"flag" BOOLEAN 
 );
 
-CREATE TABLE "brewery_image" (
-	"id" SERIAL PRIMARY KEY,
-	"image_url" VARCHAR (200),
-	"brewery_id" INT REFERENCES "brewery_info"
-
-);
