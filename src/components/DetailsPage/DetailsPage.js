@@ -6,6 +6,9 @@ class DetailsPage extends Component {
     componentDidMount() {
         this.props.dispatch({type: 'GET_BREWERY_COMMENTS', payload: this.props.imageReducer[0].id});
     }
+    goBack = () => {
+        this.props.history.push(`/home`);
+    }
 
     render() {
         return (
@@ -38,6 +41,7 @@ class DetailsPage extends Component {
                             }
                     </tbody>
                 </table>
+                <button onClick={this.goBack}>Back</button>
             </div>
             </Fragment>
         )
