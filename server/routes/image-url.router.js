@@ -9,7 +9,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     pool.query(`SELECT * FROM "brewery_info" WHERE "user_id" = $1;`, [req.user.id])
         .then(results => res.send(results.rows))
         .catch(error => {
-            console.log('Error GETTING shelf:', error);
+            console.log('Error GETTING brewery info:', error);
             res.sendStatus(500);
     });
 });
