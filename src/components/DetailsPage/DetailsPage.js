@@ -129,13 +129,7 @@ class DetailsPage extends Component {
                 </Fragment>
             );
 
-        return (
-            <Fragment>
-            <div>
-                {editDetails}
-            </div>
-            <div>
-                <h2>What are they Saying?</h2>
+            const commentsDisplay = this.props.commentsReducer.length > 0  ? (
                 <table>
                     <thead>
                         <tr>
@@ -154,6 +148,18 @@ class DetailsPage extends Component {
                             }
                     </tbody>
                 </table>
+                ) : ( 
+                <h3>You have zero comments about your brewery yet</h3>
+                );
+
+        return (
+            <Fragment>
+            <div>
+                {editDetails}
+            </div>
+            <div>
+                <h2>What are they Saying?</h2>
+                {commentsDisplay}
                 <button onClick={this.goBack}>Back</button>
             </div>
             </Fragment>
