@@ -1,32 +1,48 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 class DetailsPage extends Component {
+
+    componentDidMount() {
+        this.props.dispatch({type: 'GET_BREWERY_COMMENTS', payload: this.props.imageReducer[0].id});
+    }
+
     render() {
         return (
+            <Fragment>
             <div>
-                {/* <p>test</p> */}
-                {JSON.stringify(this.props.details)}
-                {this.props.imageReducer.map((item, i) => {
-                    return (
-                    <div key={item.id}>
-                        <img src={item.image_url} alt={item.id} width="25%" height="25%" />
-                        <p>{item.brewery_name}</p>
-                        <p>{item.bio}</p>
-                        <p>{item.street}</p>
-                        <p>{item.city}</p>
-                        <p>{item.state}</p>
-                        <p>{item.zip}</p>
-                    </div>
-                    )})
-                }
+                <p>{this.props.imageReducer[0].brewery_name}</p>
+                <p>{this.props.imageReducer[0].bio}</p>
+                <p>{this.props.imageReducer[0].street}</p>
+                <p>{this.props.imageReducer[0].city}</p>
+                <p>{this.props.imageReducer[0].state}</p>
+                <p>{this.props.imageReducer[0].zip}</p>
             </div>
+            <div>
+                <h2>What are they Saying?</h2>
+                <table>
+                    <tr>
+                        <th>Username</th>
+                        <th>Comment</th>
+                    </tr>
+                {this.props.commentsReducer.map((item, i) => {
+                        return (
+                        <tr key={item.comment_id}>
+                            <td>{item.username}</td>
+                            <td>{item.comment_body}</td>
+                        </tr>
+                        )})
+                    }
+                </table>
+            </div>
+            </Fragment>
         )
     }
 }
 
 const putReduxStateOnProps = (reduxStore) => ({
-    imageReducer: reduxStore.imageReducer
+    imageReducer: reduxStore.imageReducer,
+    commentsReducer: reduxStore.commentsReducer
 });
 
 export default connect(putReduxStateOnProps)(DetailsPage);
