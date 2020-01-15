@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 
-//GET route for image
+//GET route for comments
 router.get('/', rejectUnauthenticated, (req, res) => {
     const id = req.query.id
     pool.query(`SELECT * FROM "comments" 
@@ -11,7 +11,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     WHERE "brewery_id" = $1;`, [id])
         .then(results => res.send(results.rows))
         .catch(error => {
-            console.log('Error GETTING shelf:', error);
+            console.log('Error GETTING comments:', error);
             res.sendStatus(500);
     });
 });
