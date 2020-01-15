@@ -13,6 +13,7 @@ const userRouter = require('./routes/user.router');
 const breweryRouter = require('./routes/brewery.router');
 const imageUrlRouter = require('./routes/image-url.router');
 const commentsRouter = require('./routes/comments.router');
+const detailsRouter = require('./routes/details.router');
 const UploaderS3Router = require('react-dropzone-s3-uploader/s3router');
 
 // Body parser middleware
@@ -31,6 +32,7 @@ app.use('/api/user', userRouter);
 app.use('/api/brewery', breweryRouter);
 app.use('/api/imageurl', imageUrlRouter);
 app.use('/api/comments', commentsRouter);
+app.use('/api/details', detailsRouter);
 
 app.use('/s3', UploaderS3Router({
   bucket: 'jamiebucket19',
