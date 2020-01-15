@@ -14,6 +14,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 const styles =  {
   card: {
     minWidth: 275,
+    width: 300,
+    marginLeft: 400,
+    marginTop: 100,
     textAlign: 'center',
   },
   pageTitle: {
