@@ -12,7 +12,10 @@ import TextField from '@material-ui/core/TextField';
 const styles =  {
   card: {
     minWidth: 275,
+    width: 300,
     textAlign: 'center',
+    marginLeft: 400,
+    marginTop: 100
   },
   pageTitle: {
     margin: '20px auto 20px auto'
@@ -23,6 +26,9 @@ const styles =  {
   },
   button: {
     marginBottom: '10px'
+  },
+  center: {
+    textAlign: 'center'
   }
 };
 
