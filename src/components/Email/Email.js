@@ -1,4 +1,30 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+
+
+//Material UI Stuff
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+
+
+const styles =  {
+    form: {
+      textAlign: 'center',
+    },
+    pageTitle: {
+      margin: '20px auto 20px auto'
+    },
+    textField: {
+      marginBottom: '10px',
+      width: 200,
+    },
+    button: {
+      marginBottom: '10px',
+      marginTop: '10px'
+    },
+  };
 
 class Email extends Component {
 
@@ -15,36 +41,52 @@ class Email extends Component {
       }
 
     render() {
+
+        const { classes } = this.props;
+
         return (
             <div>
-                <h2>Update Your Fans:</h2>
+                <Typography variant="h2" className={classes.pageTitle}>
+                    Update Your Fans:
+                </Typography>
                 <div>
-                    <input 
+                    <TextField 
                         type="text"
                         name="subject"
-                        placeholder="Subject"
+                        label="Subject"
+                        className={classes.textField}
+                        variant="outlined"
                         value={this.state.subject}
                         onChange={this.handleInputChangeFor('subject')}
 
                     />
                 </div>
                 <div>
-                    <textarea
+                    <TextField
                         type="text"
+                        multiline
                         rows="10"
                         cols="50"
                         name="body"
-                        placeholder="body"
+                        label="Email Body"
+                        variant="outlined"
+                        fullWidth	
                         value={this.state.body}
                         onChange={this.handleInputChangeFor('body')}
                     />
                 </div>
                 <div>
-                    <button>Send</button>
+                    <Button
+                    variant="contained"
+                    className={classes.button}
+                    color="primary"
+                    >
+                    Send
+                    </Button>
                 </div>
             </div>
         )
     }
 }
 
-export default Email;
+export default connect()(withStyles(styles)(Email));
