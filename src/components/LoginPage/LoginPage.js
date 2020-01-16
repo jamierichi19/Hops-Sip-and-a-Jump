@@ -14,7 +14,7 @@ const styles =  {
     minWidth: 275,
     width: 300,
     textAlign: 'center',
-    marginLeft: 400,
+    marginLeft: 550,
     marginTop: 100
   },
   pageTitle: {

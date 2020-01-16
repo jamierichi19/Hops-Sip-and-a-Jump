@@ -87,7 +87,7 @@ class BreweryForm extends Component {
         return (
             <Fragment>
                 <Grid container spacing={3}>
-                    <Grid md={6}>
+                    <Grid item md={6}>
                         <Typography variant="h2" className={classes.pageTitle}>
                             Enter Your Brewery
                         </Typography>
@@ -172,7 +172,7 @@ class BreweryForm extends Component {
                             </div>
                         </form>
                     </Grid>
-                    <Grid md={6}>
+                    <Grid item md={6}>
                         <Typography variant="h2" className={classes.pageTitle}>
                                 Upload an Image
                         </Typography>

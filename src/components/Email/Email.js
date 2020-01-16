@@ -14,7 +14,8 @@ const styles =  {
       textAlign: 'center',
     },
     pageTitle: {
-      margin: '20px auto 20px auto'
+      margin: '20px auto 20px auto',
+      textAlign: 'center'
     },
     textField: {
       marginBottom: '10px',
@@ -23,7 +24,7 @@ const styles =  {
     button: {
       marginBottom: '10px',
       marginTop: '10px'
-    },
+    }
   };
 
 class Email extends Component {
@@ -47,7 +48,7 @@ class Email extends Component {
         return (
             <div>
                 <Typography variant="h2" className={classes.pageTitle}>
-                    Update Your Fans:
+                    Update Your Fans
                 </Typography>
                 <div>
                     <TextField 

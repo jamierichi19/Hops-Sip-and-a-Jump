@@ -15,7 +15,7 @@ const styles =  {
   card: {
     minWidth: 275,
     width: 300,
-    marginLeft: 400,
+    marginLeft: 550,
     marginTop: 100,
     textAlign: 'center',
   },
