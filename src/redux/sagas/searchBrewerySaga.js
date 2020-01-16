@@ -1,17 +1,17 @@
 import axios from 'axios';
-import { takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 
 function* searchBrewery(action){
     try{
-        console.log(action.payload)
-        // yield axios.post(`/api/brewery`, action.payload);
+        const getResponse = yield axios.get(`/api/search?city=${action.payload.search}`);
+        yield put({type: 'SET_SEARCH_RESULTS', payload: getResponse.data})
     } catch (error){
         console.log(error)
     }
 }
 
 function* searchBrewerySaga() {
-    yield takeLatest('ADD_BREWERY', searchBrewery);
+    yield takeLatest('SEARCH_BREWERY', searchBrewery);
 }
 
 export default searchBrewerySaga;
