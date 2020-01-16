@@ -6,11 +6,17 @@ import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 
 const styles =  {
     pageTitle: {
       margin: '20px auto 20px auto'
+    },
+    pageTitleCenter: {
+        margin: '20px auto 20px auto',
+        textAlign: 'center'
     },
     button: {
       marginBottom: '10px',
@@ -24,6 +30,19 @@ const styles =  {
     },
     imageAlign: {
         marginLeft: '250px'
+    },
+    card: {
+        width: 300,
+        height: 250,
+        textAlign: 'center',
+        marginLeft: 550,
+      },
+    removeButton: {
+        marginTop: '20px',
+        marginRight: '10px'
+    },
+    spacing: {
+        marginBottom: '10px'
     }
   };
 
@@ -44,25 +63,28 @@ class MyBreweries extends Component {
 
         return (
             <>
-             <Typography variant="h2" className={classes.pageTitle}>
-                My Brewery:
+             <Typography variant="h2" className={classes.pageTitleCenter}>
+                My Brewery
             </Typography>
                 {this.props.imageReducer.map((item, i) => {
                     return (
-                        <div key={item.id} className={classes.imageAlign}>
-                        <Link to="/details">
-                            <img  src={item.image_url} alt={item.id} width="25%" height="25%" />
-                        </Link>
-                        <br />
-                        <Button
-                            onClick={() => this.deleteItem(item.id)}
-                            variant="contained"
-                            color="secondary"
-                            className={classes.button}
-                        >
-                        Remove
-                        </Button>
-                        </div>
+                        <Card key={item.id} className={classes.card}>
+                            <CardContent>
+                                <div className={classes.spacing}>{item.brewery_name}</div>
+                                <Link to="/details">
+                                    <img  src={item.image_url} alt={item.id} width="75%" height="75%" />
+                                </Link>
+                                <br />
+                                <Button
+                                    onClick={() => this.deleteItem(item.id)}
+                                    variant="contained"
+                                    color="secondary"
+                                    className={classes.removeButton}
+                                >
+                                Remove
+                                </Button>
+                            </CardContent>
+                        </Card>
                     )})
                 }
             <hr className={classes.visibleSeperator}/>
