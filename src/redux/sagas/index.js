@@ -8,6 +8,7 @@ import getImageSaga from './getImageSaga';
 import deleteBrewerySaga from './deleteBrewerySaga';
 import getCommentsSaga from './getCommentsSaga';
 import editBreweryDetailsSaga from './editBreweryDetailsSaga';
+import searchBrewerySaga from './searchBrewerySaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -27,5 +28,6 @@ export default function* rootSaga() {
     deleteBrewerySaga(),
     getCommentsSaga(),
     editBreweryDetailsSaga(),
+    searchBrewerySaga(),
   ]);
 }
