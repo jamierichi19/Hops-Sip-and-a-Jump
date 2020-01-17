@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import Grid from '@material-ui/core/Grid';
 
 
 const styles =  {
@@ -25,7 +26,7 @@ const styles =  {
       height: 280,
       textAlign: 'center',
       marginTop: 20
-    },
+    }
   
 };
 
@@ -67,27 +68,30 @@ class Search extends Component {
                 onChange={this.handleInputChangeFor('search')}
                 />
                 <button onClick={this.searchBrewery}>Search</button> 
-                
+                <Grid container spacing={4} >
                 {this.props.searchReducer.map((item, i) => {
                     return (
-                        <Card key={item.id} className={classes.card}>
-                          <CardContent>
-                                <div>{item.brewery_name}</div>
-                                <div>{item.city}</div>
-                                <img src={item.image_url} alt={item.id} />
-                                <Link to="/brewery-details">
-                                  <Button
-                                  variant="contained"
-                                  color="primary"
-                                  onClick={() => this.getDetailsAndComments(item.id)}
-                                  >
-                                    Veiw Details
-                                  </Button>
-                                </Link>
-                            </CardContent>
-                        </Card>
+                      <Grid item key={item.id}> 
+                          <Card  className={classes.card}>
+                            <CardContent>
+                                  <div>{item.brewery_name}</div>
+                                  <div>{item.city}</div>
+                                  <img src={item.image_url} alt={item.id} />
+                                  <Link to="/brewery-details">
+                                    <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={() => this.getDetailsAndComments(item.id)}
+                                    >
+                                      Veiw Details
+                                    </Button>
+                                  </Link>
+                              </CardContent>
+                          </Card>
+                        </Grid>
                     )})
                 }
+                </Grid>
                 
             </div>
         )

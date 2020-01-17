@@ -9,6 +9,8 @@ class BreweryDetails extends Component {
         
     }
 
+   
+
     handleInputChangeFor = propertyName => (event) => {
         this.setState({
           [propertyName]: event.target.value,
