@@ -3,16 +3,21 @@ import { connect } from 'react-redux';
 import BreweryForm from '../BreweryForm/BreweryForm';
 import MyBreweries from '../MyBreweries/MyBreweries';
 import Email from '../Email/Email';
+import Search from '../Search/Search'
 
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
 // and then instead of `props.user.username` you could use `user.username`
 
 export class UserPage extends Component {
+
   render() {
 
     const homePage = this.props.user.type === 'patron'  ? (
-    <p>hello {this.props.user.type}</p>
+      <Fragment>
+        <p>Hello, {this.props.user.username}</p>
+        <Search />
+      </Fragment>
     ) : ( 
     <Fragment>
       <BreweryForm /> 
