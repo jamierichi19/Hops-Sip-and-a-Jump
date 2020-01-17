@@ -10,6 +10,7 @@ import Search from '../Search/Search'
 // and then instead of `props.user.username` you could use `user.username`
 
 export class UserPage extends Component {
+
   render() {
 
     const homePage = this.props.user.type === 'patron'  ? (

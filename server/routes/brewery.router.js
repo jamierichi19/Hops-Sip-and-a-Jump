@@ -5,7 +5,6 @@ const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 
 //POST Brewery Info
 router.post('/', rejectUnauthenticated, (req, res) => {
-    console.log(req.body)
     const name = req.body.name
     const bio = req.body.bio;
     const street = req.body.street;
