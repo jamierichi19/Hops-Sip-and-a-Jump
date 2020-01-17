@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 //Material UI Stuff
 import { withStyles } from '@material-ui/core/styles';
@@ -7,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import  Grid  from '@material-ui/core/Grid';
 
 
 const styles =  {
@@ -37,13 +37,17 @@ class Search extends Component {
 
     searchBrewery = (event) => {    
         this.props.dispatch({ type: 'SEARCH_BREWERY', payload: this.state });
-      } // end searchBrewery
+      } 
 
     handleInputChangeFor = propertyName => (event) => {
         this.setState({
           [propertyName]: event.target.value,
         });
       }
+    getDetailsAndComments = (id) => {
+      this.props.dispatch({type: 'GET_DETAILS', payload: id});
+      this.props.dispatch({type: 'GET_BREWERY_COMMENTS', payload: id});
+    }
 
     render() {
       const { classes } = this.props;
@@ -71,12 +75,15 @@ class Search extends Component {
                                 <div>{item.brewery_name}</div>
                                 <div>{item.city}</div>
                                 <img src={item.image_url} alt={item.id} />
-                                <Button
-                                variant="contained"
-                                color="primary"
-                                >
-                                  Veiw Details
-                                </Button>
+                                <Link to="/brewery-details">
+                                  <Button
+                                  variant="contained"
+                                  color="primary"
+                                  onClick={() => this.getDetailsAndComments(item.id)}
+                                  >
+                                    Veiw Details
+                                  </Button>
+                                </Link>
                             </CardContent>
                         </Card>
                     )})
