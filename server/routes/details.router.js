@@ -23,7 +23,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     const id = req.query.id
     pool.query(`SELECT * FROM "brewery_info" 
     WHERE "id" = $1;`, [id])
-        .then(results => res.send(results.rows))
+        .then(results => res.send(results.rows[0]))
         .catch(error => {
             console.log('Error GETTING comments:', error);
             res.sendStatus(500);

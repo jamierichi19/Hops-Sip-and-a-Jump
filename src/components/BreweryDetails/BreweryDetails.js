@@ -3,27 +3,43 @@ import { connect } from 'react-redux';
 
 class BreweryDetails extends Component {
 
+    state = {
+        comment: '',
+        breweryId: '',
+        
+    }
+
+    handleInputChangeFor = propertyName => (event) => {
+        this.setState({
+          [propertyName]: event.target.value,
+          breweryId: this.props.detailsReducer.id
+        });
+        console.log(event.target.value)
+    }
+
+    addComment = (id) => {
+        this.props.dispatch({ type: 'ADD_COMMENT', payload: this.state})
+        this.props.dispatch({ type: 'GET_BREWERY_COMMENTS', payload: id})
+    }
 
     render() {
         return (
             <div>
                 <h2>Brewery Details</h2>
                 <div>
-                {this.props.detailsReducer.map((item) => {
-                    return (
-                        <div key={item.id}>
-                            <img src={item.image_url} alt={item.id} />
-                            <h3>{item.brewery_name}</h3>
-                            <div>{item.bio}</div>
-                            <div>{item.street}</div>
-                            <div>{item.city} {item.state}, {item.zip}</div>
-                        </div>
-                    )})
-                }
+                <img src={this.props.detailsReducer.image_url} alt={this.props.id}/>
+                <h3>{this.props.detailsReducer.brewery_name}</h3>
+                <div>{this.props.detailsReducer.bio}</div>
+                <div>{this.props.detailsReducer.street}</div>
+                <div>{this.props.detailsReducer.city} {this.props.detailsReducer.state}, {this.props.detailsReducer.zip}</div>
                 </div>
                 <div>
-                    <input placeholder="Leave a comment..."/>
-                    <button>Add Comment</button>
+                    <input 
+                        placeholder="Leave a comment..."
+                        value={this.state.comment}
+                        onChange={this.handleInputChangeFor('comment')}
+                    />
+                    <button  onClick={() => this.addComment(this.state.breweryId)}>Add Comment</button>
                     <table>
                         <thead>
                             <tr>
@@ -34,7 +50,7 @@ class BreweryDetails extends Component {
                         <tbody>
                             {this.props.commentsReducer.map((item) => {
                                 return (
-                                    <tr key={item.id}>
+                                    <tr key={item.comment_id}>
                                         <td>{item.username}</td>
                                         <td>{item.comment_body}</td>
                                     </tr>
@@ -51,7 +67,7 @@ class BreweryDetails extends Component {
 
 const putReduxStateOnProps = (reduxStore) => ({
     detailsReducer: reduxStore.detailsReducer,
-    commentsReducer: reduxStore.commentsReducer
+    commentsReducer: reduxStore.commentsReducer,
   });
 
 export default connect(putReduxStateOnProps)(BreweryDetails);
