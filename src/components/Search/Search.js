@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 
 
@@ -26,7 +27,19 @@ const styles =  {
       height: 280,
       textAlign: 'center',
       marginTop: 20
-    }
+  },
+  textField: {
+    marginBottom: '10px',
+    width: 200,
+  },
+  button: {
+    marginBottom: '10px',
+    marginLeft: '20px',
+    marginTop: '10px'
+  },
+  container: {
+    textAlign: 'center'
+  }
   
 };
 
@@ -57,17 +70,26 @@ class Search extends Component {
               <Typography variant="h2" className={classes.pageTitleCenter}>
                 Search for a brewery
               </Typography>
-                <input 
+              <div className={classes.container}>
+                <TextField 
                 type="text"
                 name="search"
                 label="Search"
                 placeholder="Search"
-                // variant="outlined"
-                // className={classes.textField}
+                variant="outlined"
+                className={classes.textField}
                 value={this.state.search}
                 onChange={this.handleInputChangeFor('search')}
                 />
-                <button onClick={this.searchBrewery}>Search</button> 
+                <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                onClick={this.searchBrewery}
+                >
+                  Search
+                </Button> 
+                </div>
                 <Grid container spacing={4} >
                 {this.props.searchReducer.map((item, i) => {
                     return (
