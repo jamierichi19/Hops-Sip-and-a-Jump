@@ -21,5 +21,22 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
     .catch(() => res.sendStatus(500))
 });
 
+//GET route for likes
+router.get('/', rejectUnauthenticated, (req, res) => {
+    const id = req.user.id
+    const sqlText = `SELECT 
+    "brewery_info"."brewery_name", "brewery_info"."bio", "brewery_info"."street", "brewery_info"."city", "brewery_info"."state", 
+    "brewery_info"."zip","brewery_info"."image_url" FROM "brewery_info"
+    JOIN "favorites" on "favorites"."brewery_id" = "brewery_info"."id"
+    JOIN "user" on "user"."id" = "favorites"."user_id"
+    WHERE "user"."id" = $1`
+    pool.query(sqlText, [id])
+        .then(results => res.send(results.rows))
+        .catch(error => {
+            console.log('Error GETTING comments:', error);
+            res.sendStatus(500);
+    });
+});
+
 
 module.exports = router;

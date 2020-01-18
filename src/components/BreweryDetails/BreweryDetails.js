@@ -62,8 +62,7 @@ class BreweryDetails extends Component {
     state = {
         comment: '',
         breweryId: '',
-        liked: false
-        
+        liked: false       
     }
 
     handleInputChangeFor = propertyName => (event) => {
