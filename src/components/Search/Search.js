@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 
@@ -26,7 +27,9 @@ const styles =  {
       width: 300,
       height: 280,
       textAlign: 'center',
-      marginTop: 20
+      // marginTop: 20,
+      margin: 'auto'
+
   },
   textField: {
     marginBottom: '10px',
@@ -39,7 +42,10 @@ const styles =  {
   },
   container: {
     textAlign: 'center'
-  }
+  },
+  media: {
+    height: 140
+  },
   
 };
 
@@ -98,7 +104,9 @@ class Search extends Component {
                             <CardContent>
                                   <div>{item.brewery_name}</div>
                                   <div>{item.city}</div>
-                                  <img src={item.image_url} alt={item.id} />
+                                  <CardMedia className={classes.media}
+                                   image={item.image_url} alt={item.id} />
+                                  
                                   <Link to="/brewery-details">
                                     <Button
                                     variant="contained"

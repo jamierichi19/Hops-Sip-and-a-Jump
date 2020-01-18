@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Grid from '@material-ui/core/Grid'
 
 
 const styles =  {
@@ -28,14 +30,10 @@ const styles =  {
         borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
         marginTop: '30px'
     },
-    imageAlign: {
-        marginLeft: '250px'
-    },
     card: {
         width: 300,
-        height: 250,
-        textAlign: 'center',
-        marginLeft: 550,
+        height: 300,
+        textAlign: 'center'
       },
     removeButton: {
         marginTop: '20px',
@@ -43,7 +41,10 @@ const styles =  {
     },
     spacing: {
         marginBottom: '10px'
-    }
+    },
+    media: {
+        height: 140
+      },
   };
 
 
@@ -66,13 +67,21 @@ class MyBreweries extends Component {
              <Typography variant="h2" className={classes.pageTitleCenter}>
                 My Brewery
             </Typography>
+            <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justify="center"
+                style={{ minHeight: '20vh' }}>
+                <Grid item>
                 {this.props.imageReducer.map((item, i) => {
                     return (
                         <Card key={item.id} className={classes.card}>
                             <CardContent>
                                 <div className={classes.spacing}>{item.brewery_name}</div>
                                 <Link to="/details">
-                                    <img  src={item.image_url} alt={item.id} width="75%" height="75%" />
+                                    <CardMedia className={classes.media }image={item.image_url} alt={item.id}  />
                                 </Link>
                                 <br />
                                 <Button
@@ -87,6 +96,8 @@ class MyBreweries extends Component {
                         </Card>
                     )})
                 }
+                </Grid>
+            </Grid>
             <hr className={classes.visibleSeperator}/>
             </>
         )
