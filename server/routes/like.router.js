@@ -13,5 +13,13 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     .catch(() => res.sendStatus(500))
 });
 
+//DELETE route for removing like
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+    console.log(req.params.id)
+    pool.query(`DELETE FROM "favorites"  WHERE "brewery_id" = $1`, [req.params.id])
+    .then(()=> res.sendStatus(200))
+    .catch(() => res.sendStatus(500))
+});
+
 
 module.exports = router;

@@ -89,7 +89,7 @@ class BreweryDetails extends Component {
         this.setState({
             liked: false
         })
-        this.props.dispatch({type: 'UNLIKE_BREWERY', payload: {id: id }})
+        this.props.dispatch({type: 'UNLIKE_BREWERY', payload: id })
     }
 
     render() {

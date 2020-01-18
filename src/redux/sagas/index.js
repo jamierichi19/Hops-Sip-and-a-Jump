@@ -36,6 +36,6 @@ export default function* rootSaga() {
     getDetailsSaga(),
     addCommentSaga(),
     likeBrewerySaga(),
-    // unlikeBrewerySaga(),
+    unlikeBrewerySaga(),
   ]);
 }
