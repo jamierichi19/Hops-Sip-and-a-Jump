@@ -62,6 +62,7 @@ class BreweryDetails extends Component {
     state = {
         comment: '',
         breweryId: '',
+        liked: false
         
     }
 
@@ -70,7 +71,6 @@ class BreweryDetails extends Component {
           [propertyName]: event.target.value,
           breweryId: this.props.detailsReducer.id
         });
-        console.log(event.target.value)
     }
 
     addComment = (id) => {
@@ -78,9 +78,33 @@ class BreweryDetails extends Component {
         this.props.dispatch({ type: 'GET_BREWERY_COMMENTS', payload: id})
     }
 
+    likeBrewery = (id) => {
+        this.setState({
+            liked: true,
+        })
+        this.props.dispatch({type: 'LIKE_BREWERY', payload: id })
+    }
+
+    unlikeBrewery = (id) => {
+        this.setState({
+            liked: false
+        })
+        this.props.dispatch({type: 'UNLIKE_BREWERY', payload: id })
+    }
+
     render() {
 
         const { classes } = this.props;
+
+        const likeBrewery = this.state.liked === false  ? (
+            <div className={classes.container}>
+                <button onClick={() => this.likeBrewery(this.props.detailsReducer.id)}>Like</button>
+            </div>
+          ) : ( 
+            <div className={classes.container}>
+                <button onClick={() => this.unlikeBrewery(this.props.detailsReducer.id)}>Unlike</button>
+            </div>
+          );
 
         return (
             <div>
@@ -106,6 +130,7 @@ class BreweryDetails extends Component {
                         </Card>
                     </Grid>
                 </Grid>
+                {likeBrewery}
                 <div className={classes.container}>
                     <TextField 
                         variant="outlined"
