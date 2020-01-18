@@ -27,7 +27,6 @@ const styles =  {
       width: 300,
       height: 280,
       textAlign: 'center',
-      // marginTop: 20,
       margin: 'auto'
 
   },
@@ -74,7 +73,7 @@ class Search extends Component {
         return (
             <div>
               <Typography variant="h2" className={classes.pageTitleCenter}>
-                Search for a brewery
+                Search for a Brewery
               </Typography>
               <div className={classes.container}>
                 <TextField 
