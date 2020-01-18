@@ -13,18 +13,17 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Grid from '@material-ui/core/Grid';
 
 const styles =  {
     card: {
       minWidth: 275,
       width: 300,
       textAlign: 'center',
-      marginLeft: 550,
     },
     tableCard: {
         textAlign: 'center',
         width: 750,
-        marginLeft: 350,
     },
     pageTitle: {
       margin: '20px auto 20px auto',
@@ -106,149 +105,179 @@ class DetailsPage extends Component {
 
         const editDetails = this.state.edit === false  ? (
             <Fragment>
-                <Typography variant="h2" className={classes.pageTitle}>
-                    My Brewery Details
-                </Typography>
-                <Card className={classes.card}>
-                    <CardContent>
-                        <p>{this.props.imageReducer[0].brewery_name}</p>
-                        <p>{this.props.imageReducer[0].bio}</p>
-                        <div>{this.props.imageReducer[0].street}</div>
-                        <br />
-                        <div>
-                            {this.props.imageReducer[0].city} {this.props.imageReducer[0].state}, 
-                            {this.props.imageReducer[0].zip}
-                        </div>
-                        <Button 
-                        onClick={this.editDetails}
-                        variant="contained"
-                        className={classes.button}
-                        color="primary"
-                        >
-                        Edit Details
-                        </Button>
-                    </CardContent>
-                </Card>
+                <Grid
+                 container           
+                 spacing={0}
+                 direction="column"
+                 alignItems="center"
+                 justify="center"
+                 style={{ minHeight: '50vh' }}>
+                    <Grid item>
+                        <Typography variant="h2" className={classes.pageTitle}>
+                            My Brewery Details
+                        </Typography>
+                        <Card className={classes.card}>
+                            <CardContent>
+                                <p>{this.props.imageReducer[0].brewery_name}</p>
+                                <p>{this.props.imageReducer[0].bio}</p>
+                                <div>{this.props.imageReducer[0].street}</div>
+                                <br />
+                                <div>
+                                    {this.props.imageReducer[0].city} {this.props.imageReducer[0].state}, 
+                                    {this.props.imageReducer[0].zip}
+                                </div>
+                                <Button 
+                                onClick={this.editDetails}
+                                variant="contained"
+                                className={classes.button}
+                                color="primary"
+                                >
+                                Edit Details
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                </Grid>
             </Fragment>
             ) : ( 
                 <Fragment>
-                    <Typography variant="h2" className={classes.pageTitle}>
-                        Edit Brewery Details
-                    </Typography>
-                    <Card className={classes.card}>
-                        <CardContent>
-                            <div>
-                                <TextField
-                                    type="text"
-                                    name="name"
-                                    label="Name of brewery"
-                                    variant="outlined"
-                                    className={classes.textField}
-                                    value={this.state.name}
-                                    onChange={this.handleInputChangeFor('name')}
-                                />
-                            </div>
-                            <div>
-                                <TextField
-                                    type="text"
-                                    name="bio"
-                                    multiline
-                                    rows="4"
-                                    variant="outlined"
-                                    label="Enter a short bio"
-                                    className={classes.textField}
-                                    value={this.state.bio}
-                                    onChange={this.handleInputChangeFor('bio')}
-                                />
-                            </div>
-                            <div>
-                                <TextField
-                                    type="text"
-                                    name="street"
-                                    label="Street"
-                                    variant="outlined"
-                                    className={classes.textField}
-                                    value={this.state.street}
-                                    onChange={this.handleInputChangeFor('street')}
-                                />
-                            </div>
-                            <div>
-                                <TextField
-                                    type="text"
-                                    name="city"
-                                    label="city"
-                                    variant="outlined"
-                                    className={classes.textField}
-                                    value={this.state.city}
-                                    onChange={this.handleInputChangeFor('city')}
-                                />
-                            </div>
-                            <div>
-                                <TextField
-                                    type="text"
-                                    name="state"
-                                    label="State"
-                                    variant="outlined"
-                                    className={classes.textField}
-                                    value={this.state.state}
-                                    onChange={this.handleInputChangeFor('state')}
-                                />
-                            </div>
-                            <div>
-                                <TextField
-                                    type="number"
-                                    name="zip"
-                                    label="Zip"
-                                    variant="outlined"
-                                    className={classes.textField}
-                                    value={this.state.zip}
-                                    onChange={this.handleInputChangeFor('zip')}
-                                />
-                            </div>
-                            <Button
-                            variant="contained"
-                            color="secondary"
-                            className={classes.buttonSpacingRight}
-                            onClick={this.cancel}
-                            >
-                            Cancel
-                            </Button>
-                            <Button
-                            variant="contained"
-                            color="primary"
-                            className={classes.buttonSpacingLeft}
-                            onClick={this.editDetails}
-                            >
-                            Save
-                            </Button>
-                        </CardContent>
-                    </Card>
+                    <Grid
+                    container           
+                    spacing={0}
+                    direction="column"
+                    alignItems="center"
+                    justify="center"
+                    style={{ minHeight: '50vh' }}>
+                        <Grid item>
+                            <Typography variant="h2" className={classes.pageTitle}>
+                                Edit Brewery Details
+                            </Typography>
+                            <Card className={classes.card}>
+                                <CardContent>
+                                    <div>
+                                        <TextField
+                                            type="text"
+                                            name="name"
+                                            label="Name of brewery"
+                                            variant="outlined"
+                                            className={classes.textField}
+                                            value={this.state.name}
+                                            onChange={this.handleInputChangeFor('name')}
+                                        />
+                                    </div>
+                                    <div>
+                                        <TextField
+                                            type="text"
+                                            name="bio"
+                                            multiline
+                                            rows="4"
+                                            variant="outlined"
+                                            label="Enter a short bio"
+                                            className={classes.textField}
+                                            value={this.state.bio}
+                                            onChange={this.handleInputChangeFor('bio')}
+                                        />
+                                    </div>
+                                    <div>
+                                        <TextField
+                                            type="text"
+                                            name="street"
+                                            label="Street"
+                                            variant="outlined"
+                                            className={classes.textField}
+                                            value={this.state.street}
+                                            onChange={this.handleInputChangeFor('street')}
+                                        />
+                                    </div>
+                                    <div>
+                                        <TextField
+                                            type="text"
+                                            name="city"
+                                            label="city"
+                                            variant="outlined"
+                                            className={classes.textField}
+                                            value={this.state.city}
+                                            onChange={this.handleInputChangeFor('city')}
+                                        />
+                                    </div>
+                                    <div>
+                                        <TextField
+                                            type="text"
+                                            name="state"
+                                            label="State"
+                                            variant="outlined"
+                                            className={classes.textField}
+                                            value={this.state.state}
+                                            onChange={this.handleInputChangeFor('state')}
+                                        />
+                                    </div>
+                                    <div>
+                                        <TextField
+                                            type="number"
+                                            name="zip"
+                                            label="Zip"
+                                            variant="outlined"
+                                            className={classes.textField}
+                                            value={this.state.zip}
+                                            onChange={this.handleInputChangeFor('zip')}
+                                        />
+                                    </div>
+                                    <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    // className={classes.buttonSpacingRight}
+                                    onClick={this.cancel}
+                                    >
+                                    Cancel
+                                    </Button>
+                                    <Button
+                                    variant="contained"
+                                    color="primary"
+                                    // className={classes.buttonSpacingLeft}
+                                    onClick={this.editDetails}
+                                    >
+                                    Save
+                                    </Button>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                    </Grid>
                 </Fragment>
             );
 
             const commentsDisplay = this.props.commentsReducer.length > 0  ? (
-                <Card className={classes.tableCard}>
-                    <CardContent>
-                        <Table className={classes.table}>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>Username</TableCell>
-                                    <TableCell>Comment</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {this.props.commentsReducer.map((item, i) => {
-                                        return (
-                                        <TableRow key={item.comment_id}>
-                                            <TableCell>{item.username}</TableCell>
-                                            <TableCell>{item.comment_body}</TableCell>
+                <Grid
+                container           
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justify="center"
+                style={{ minHeight: '50vh' }}>
+                    <Grid item>
+                        <Card className={classes.tableCard}>
+                            <CardContent>
+                                <Table className={classes.table}>
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Username</TableCell>
+                                            <TableCell>Comment</TableCell>
                                         </TableRow>
-                                        )})
-                                    }
-                            </TableBody>
-                        </Table>
-                </CardContent>
-                </Card>
+                                    </TableHead>
+                                    <TableBody>
+                                        {this.props.commentsReducer.map((item, i) => {
+                                                return (
+                                                <TableRow key={item.comment_id}>
+                                                    <TableCell>{item.username}</TableCell>
+                                                    <TableCell>{item.comment_body}</TableCell>
+                                                </TableRow>
+                                                )})
+                                            }
+                                    </TableBody>
+                                </Table>
+                        </CardContent>
+                        </Card>
+                    </Grid>
+                </Grid>
                 ) : ( 
                 <h3>You have zero comments about your brewery yet</h3>
                 );
