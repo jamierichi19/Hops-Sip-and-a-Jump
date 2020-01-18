@@ -62,7 +62,8 @@ class LoginPage extends Component {
     const { classes } = this.props;
 
     return (
-      <Grid container
+      <Grid 
+        container
         spacing={0}
         direction="column"
         alignItems="center"
