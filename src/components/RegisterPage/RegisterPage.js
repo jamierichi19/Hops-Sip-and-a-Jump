@@ -10,12 +10,12 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Grid from '@material-ui/core/Grid';
 
 const styles =  {
   card: {
     minWidth: 275,
     width: 300,
-    marginLeft: 550,
     marginTop: 100,
     textAlign: 'center',
   },
@@ -74,93 +74,103 @@ class RegisterPage extends Component {
     const { classes } = this.props;
 
     return (
-      <Card className={classes.card}>
-        <CardContent>
-          {this.props.errors.registrationMessage && (
-            <h2
-              className="alert"
-              role="alert"
-            >
-              {this.props.errors.registrationMessage}
-            </h2>
-          )}
-          <form onSubmit={this.registerUser}>
-          <Typography variant="h2" className={classes.pageTitle}>
-            Register
-          </Typography>
-            <div>
-              <TextField
-                type="text"
-                name="username"
-                label="Username"
-                variant="outlined"
-                className={classes.textField}
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-              />
-            </div>
-            <div>
-              <TextField
-                type="text"
-                name="email"
-                label="Email"
-                variant="outlined"
-                className={classes.textField}
-                value={this.state.email}
-                onChange={this.handleInputChangeFor('email')}
-              />
-            </div>
-            <div>
-              <TextField
-                type="password"
-                name="password"
-                label="Password"
-                variant="outlined"
-                className={classes.textField}
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-              />
-            </div>
-            <div>
-              <FormControlLabel
-                control={<Radio />}
-                label="Patron"
-                value="patron"
-                checked={this.state.accountType === "patron"}
-                onChange={this.onRadioChange}
-                />
-            </div>
-            <div>
-              <FormControlLabel
-                control={<Radio />}
-                label="Owner"
-                value="owner"
-                checked={this.state.accountType === "owner"}
-                onChange={this.onRadioChange}
-                />
-            </div>
-            <div>
-              <Button
-                className="button"
-                type="submit"
-                name="submit"
-                value="Register"
-                variant="contained"
-                color="primary"
-              >Submit</Button>
-            </div>
-          </form>
-          <center>
-            <button
-              type="button"
-              className="link-button"
-              onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
-            >
-              Already have an account? Login here
-            </button>
-          </center>
-        </CardContent>
-      </Card>
+      <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justify="center"
+        style={{ minHeight: '100vh' }}>
+          <Grid>
+            <Card className={classes.card}>
+              <CardContent>
+                {this.props.errors.registrationMessage && (
+                  <h2
+                    className="alert"
+                    role="alert"
+                  >
+                    {this.props.errors.registrationMessage}
+                  </h2>
+                )}
+                <form onSubmit={this.registerUser}>
+                <Typography variant="h2" className={classes.pageTitle}>
+                  Register
+                </Typography>
+                  <div>
+                    <TextField
+                      type="text"
+                      name="username"
+                      label="Username"
+                      variant="outlined"
+                      className={classes.textField}
+                      value={this.state.username}
+                      onChange={this.handleInputChangeFor('username')}
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      type="text"
+                      name="email"
+                      label="Email"
+                      variant="outlined"
+                      className={classes.textField}
+                      value={this.state.email}
+                      onChange={this.handleInputChangeFor('email')}
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      type="password"
+                      name="password"
+                      label="Password"
+                      variant="outlined"
+                      className={classes.textField}
+                      value={this.state.password}
+                      onChange={this.handleInputChangeFor('password')}
+                    />
+                  </div>
+                  <div>
+                    <FormControlLabel
+                      control={<Radio />}
+                      label="Patron"
+                      value="patron"
+                      checked={this.state.accountType === "patron"}
+                      onChange={this.onRadioChange}
+                      />
+                  </div>
+                  <div>
+                    <FormControlLabel
+                      control={<Radio />}
+                      label="Owner"
+                      value="owner"
+                      checked={this.state.accountType === "owner"}
+                      onChange={this.onRadioChange}
+                      />
+                  </div>
+                  <div>
+                    <Button
+                      className="button"
+                      type="submit"
+                      name="submit"
+                      value="Register"
+                      variant="contained"
+                      color="primary"
+                    >Submit</Button>
+                  </div>
+                </form>
+                <center>
+                  <button
+                    type="button"
+                    className="link-button"
+                    onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
+                  >
+                    Already have an account? Login here
+                  </button>
+                </center>
+              </CardContent>
+            </Card>
+        </Grid>
+      </Grid>
     );
   }
 }

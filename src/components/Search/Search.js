@@ -8,6 +8,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
 
 
 const styles =  {
@@ -24,8 +27,24 @@ const styles =  {
       width: 300,
       height: 280,
       textAlign: 'center',
-      marginTop: 20
-    },
+      margin: 'auto'
+
+  },
+  textField: {
+    marginBottom: '10px',
+    width: 200,
+  },
+  button: {
+    marginBottom: '10px',
+    marginLeft: '20px',
+    marginTop: '10px'
+  },
+  container: {
+    textAlign: 'center'
+  },
+  media: {
+    height: 140
+  },
   
 };
 
@@ -54,40 +73,54 @@ class Search extends Component {
         return (
             <div>
               <Typography variant="h2" className={classes.pageTitleCenter}>
-                Search for a brewery
+                Search for a Brewery
               </Typography>
-                <input 
+              <div className={classes.container}>
+                <TextField 
                 type="text"
                 name="search"
                 label="Search"
                 placeholder="Search"
-                // variant="outlined"
-                // className={classes.textField}
+                variant="outlined"
+                className={classes.textField}
                 value={this.state.search}
                 onChange={this.handleInputChangeFor('search')}
                 />
-                <button onClick={this.searchBrewery}>Search</button> 
-                
+                <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                onClick={this.searchBrewery}
+                >
+                  Search
+                </Button> 
+                </div>
+                <Grid container spacing={4} >
                 {this.props.searchReducer.map((item, i) => {
                     return (
-                        <Card key={item.id} className={classes.card}>
-                          <CardContent>
-                                <div>{item.brewery_name}</div>
-                                <div>{item.city}</div>
-                                <img src={item.image_url} alt={item.id} />
-                                <Link to="/brewery-details">
-                                  <Button
-                                  variant="contained"
-                                  color="primary"
-                                  onClick={() => this.getDetailsAndComments(item.id)}
-                                  >
-                                    Veiw Details
-                                  </Button>
-                                </Link>
-                            </CardContent>
-                        </Card>
+                      <Grid item key={item.id}> 
+                          <Card  className={classes.card}>
+                            <CardContent>
+                                  <div>{item.brewery_name}</div>
+                                  <div>{item.city}</div>
+                                  <CardMedia className={classes.media}
+                                   image={item.image_url} alt={item.id} />
+                                  
+                                  <Link to="/brewery-details">
+                                    <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={() => this.getDetailsAndComments(item.id)}
+                                    >
+                                      Veiw Details
+                                    </Button>
+                                  </Link>
+                              </CardContent>
+                          </Card>
+                        </Grid>
                     )})
                 }
+                </Grid>
                 
             </div>
         )

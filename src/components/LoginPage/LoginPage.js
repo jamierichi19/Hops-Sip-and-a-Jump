@@ -8,14 +8,13 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
 
 const styles =  {
   card: {
     minWidth: 275,
     width: 300,
     textAlign: 'center',
-    marginLeft: 550,
-    marginTop: 100
   },
   pageTitle: {
     margin: '20px auto 20px auto'
@@ -27,9 +26,6 @@ const styles =  {
   button: {
     marginBottom: '10px'
   },
-  center: {
-    textAlign: 'center'
-  }
 };
 
 
@@ -66,66 +62,76 @@ class LoginPage extends Component {
     const { classes } = this.props;
 
     return (
-      <Card className={classes.card}>
-        <CardContent>
-        {this.props.errors.loginMessage && (
-          <h2
-            className="alert"
-            role="alert"
-          >
-            {this.props.errors.loginMessage}
-          </h2>
-        )}
-        <form onSubmit={this.login}>
-          <Typography variant="h2" className={classes.pageTitle}>
-            Login
-          </Typography>
-          <div>
-              <TextField
-                type="text"
-                name="username"
-                label="Username"
-                variant="outlined"
-                className={classes.textField}
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-              />
-          </div>
-          <div>
-              <TextField
-                type="password"
-                name="password"
-                label="Password"
-                variant="outlined"
-                className={classes.textField}
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-              />
-          </div>
-          <div>
-            <Button 
-            className={classes.button}
-            type="submit"
-            name="submit"
-            value="Log In"
-            variant="contained"
-            color="primary"
-            >
-            Submit
-            </Button>
-          </div>
-        </form>
-        <center>
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
-          >
-            Don't have an account? Register here
-          </button>
-        </center>
-        </CardContent>
-      </Card>
+      <Grid 
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justify="center"
+        style={{ minHeight: '100vh' }}>
+        <Grid item >
+          <Card className={classes.card}>
+            <CardContent>
+            {this.props.errors.loginMessage && (
+              <h2
+                className="alert"
+                role="alert"
+              >
+                {this.props.errors.loginMessage}
+              </h2>
+            )}
+            <form onSubmit={this.login}>
+              <Typography variant="h2" className={classes.pageTitle}>
+                Login
+              </Typography>
+              <div>
+                  <TextField
+                    type="text"
+                    name="username"
+                    label="Username"
+                    variant="outlined"
+                    className={classes.textField}
+                    value={this.state.username}
+                    onChange={this.handleInputChangeFor('username')}
+                  />
+              </div>
+              <div>
+                  <TextField
+                    type="password"
+                    name="password"
+                    label="Password"
+                    variant="outlined"
+                    className={classes.textField}
+                    value={this.state.password}
+                    onChange={this.handleInputChangeFor('password')}
+                  />
+              </div>
+              <div>
+                <Button 
+                className={classes.button}
+                type="submit"
+                name="submit"
+                value="Log In"
+                variant="contained"
+                color="primary"
+                >
+                Submit
+                </Button>
+              </div>
+            </form>
+            <center>
+              <button
+                type="button"
+                className="link-button"
+                onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
+              >
+                Don't have an account? Register here
+              </button>
+            </center>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
     );
   }
 }
