@@ -111,6 +111,7 @@ class Search extends Component {
                                     <Button
                                     variant="contained"
                                     color="primary"
+                                    className={classes.button}
                                     onClick={() => this.getDetailsAndComments(item.id)}
                                     >
                                       Veiw Details

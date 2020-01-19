@@ -1,37 +1,45 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 
-const Nav = (props) => (
-  <div className="nav">
-    <Link to="/home">
-      <h2 className="nav-title">Hops, Sip, & a Jump</h2>
-    </Link>
-    <div className="nav-right">
-      <Link className="nav-link" to="/home">
-        {/* Show this link if they are logged in or not,
-        but call this link 'Home' if they are logged in,
-        and call this link 'Login / Register' if they are not */}
-        {props.user.id ? 'Home' : 'Login / Register'}
-      </Link>
-      {/* Show the link to the info page and the logout button if the user is logged in */}
-      {props.user.id && (
-        <>
-          <Link className="nav-link" to="/info">
-            Info Page
+
+class Nav extends Component {
+  render() {
+
+    const favorites = this.props.user.type === 'patron'  ? (
+      <Fragment>
+        <Link className="nav-link" to="/info">
+          My Favorites
+        </Link>
+        <LogOutButton className="nav-link"/>
+      </Fragment>
+    ) : ( 
+      <LogOutButton className="nav-link"/>
+    );
+
+    return (
+      <div className="nav">
+        <Link to="/home">
+          <h2 className="nav-title">Hops, Sip, & a Jump</h2>
+        </Link>
+        <div className="nav-right">
+          <Link className="nav-link" to="/home">
+            {/* Show this link if they are logged in or not,
+            but call this link 'Home' if they are logged in,
+            and call this link 'Login / Register' if they are not */}
+            {this.props.user.id ? 'Home' : 'Login / Register'}
           </Link>
-          <LogOutButton className="nav-link"/>
-        </>
-      )}
-      {/* Always show this link since the about page is not protected */}
-      <Link className="nav-link" to="/about">
-        About
-      </Link>
-    </div>
-  </div>
-);
+          {/* Show the link to the info page and the logout button if the user is logged in */}
+          {favorites}
+          {/* Always show this link since the about page is not protected */}
+        </div>
+      </div>
+    )
+  }
+}
+
 
 // Instead of taking everything from state, we just want the user
 // object to determine if they are logged in
