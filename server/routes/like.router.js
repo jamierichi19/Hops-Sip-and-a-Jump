@@ -26,7 +26,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     const id = req.user.id
     const sqlText = `SELECT 
     "brewery_info"."brewery_name", "brewery_info"."bio", "brewery_info"."street", "brewery_info"."city", "brewery_info"."state", 
-    "brewery_info"."zip","brewery_info"."image_url" FROM "brewery_info"
+    "brewery_info"."zip","brewery_info"."image_url", "brewery_info"."id" FROM "brewery_info"
     JOIN "favorites" on "favorites"."brewery_id" = "brewery_info"."id"
     JOIN "user" on "user"."id" = "favorites"."user_id"
     WHERE "user"."id" = $1`

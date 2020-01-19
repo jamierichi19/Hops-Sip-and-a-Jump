@@ -10,7 +10,7 @@ class Nav extends Component {
 
     const favorites = this.props.user.type === 'patron'  ? (
       <Fragment>
-        <Link className="nav-link" to="/info">
+        <Link className="nav-link" to="/favorites">
           My Favorites
         </Link>
         <LogOutButton className="nav-link"/>

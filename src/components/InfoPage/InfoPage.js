@@ -52,6 +52,12 @@ class InfoPage extends Component {
   componentDidMount(){
     this.props.dispatch({type: 'GET_FAVORITES'})
   }
+
+  getDetailsAndComments = (id) => {
+    this.props.dispatch({type: 'GET_DETAILS', payload: id});
+    this.props.dispatch({type: 'GET_BREWERY_COMMENTS', payload: id});
+  }
+
   render() {
 
     const { classes } = this.props;
@@ -72,7 +78,7 @@ class InfoPage extends Component {
                                   <CardMedia className={classes.media}
                                    image={item.image_url} alt={item.id} />
                                   
-                                  <Link to="/brewery-details">
+                                  <Link to="/favorites-details">
                                     <Button
                                     variant="contained"
                                     color="primary"
