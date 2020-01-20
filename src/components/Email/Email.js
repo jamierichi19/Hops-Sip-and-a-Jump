@@ -29,17 +29,25 @@ const styles =  {
 
 class Email extends Component {
 
-    state = {
-        subject: '',
-        body: ''
+  state = {
+      subject: '',
+      body: ''
+  }
+
+  // componentDidMount(){
+  //   this.props.dispatch()
+  // }
+
+  handleInputChangeFor = propertyName => (event) => {
+      this.setState({
+        [propertyName]: event.target.value,
+      });
+      console.log(event.target.value)
     }
 
-    handleInputChangeFor = propertyName => (event) => {
-        this.setState({
-          [propertyName]: event.target.value,
-        });
-        console.log(event.target.value)
-      }
+    getEmailList = (id) => {
+      this.props.dispatch({ type: 'GET_EMAIL_LIST', payload: {subject: this.state.subject, body: this.state.body, id: id} })
+    }
 
     render() {
 
@@ -81,6 +89,7 @@ class Email extends Component {
                     variant="contained"
                     className={classes.button}
                     color="primary"
+                    onClick={() => this.getEmailList(this.props.imageReducer[0].id)}
                     >
                     Send
                     </Button>
@@ -90,4 +99,8 @@ class Email extends Component {
     }
 }
 
-export default connect()(withStyles(styles)(Email));
+const putReduxStateOnProps = (reduxStore) => ({
+  imageReducer: reduxStore.imageReducer
+});
+
+export default connect(putReduxStateOnProps)(withStyles(styles)(Email));
