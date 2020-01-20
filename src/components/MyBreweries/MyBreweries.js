@@ -9,7 +9,12 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Grid from '@material-ui/core/Grid'
+import Grid from '@material-ui/core/Grid';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 const styles =  {
@@ -50,13 +55,26 @@ const styles =  {
 
 class MyBreweries extends Component {
 
+    state = {
+        open: false
+    }
+
     componentDidMount() {
         this.props.dispatch({type: 'GET_BREWERY_IMAGE'});
     }
 
     deleteItem = (id) => {
         this.props.dispatch({type: 'DELETE_BREWERY', payload: id})
+        this.setState({open: false})
     }
+
+    handleClickOpen = () => {
+        this.setState({ open: true });
+      };
+    
+    handleClose = () => {
+    this.setState({ open: false });
+    };
 
     render() {
 
@@ -85,13 +103,29 @@ class MyBreweries extends Component {
                                 </Link>
                                 <br />
                                 <Button
-                                    onClick={() => this.deleteItem(item.id)}
+                                    // onClick={() => this.deleteItem(item.id)}
+                                    onClick={this.handleClickOpen}
                                     variant="contained"
                                     color="secondary"
                                     className={classes.removeButton}
                                 >
                                 Remove
                                 </Button>
+                                <Dialog
+                                open={this.state.open}
+                                onClose={this.handleClose}
+                                >
+                                    <DialogTitle>Are You sure?</DialogTitle>
+                                    <DialogContent>
+                                        <DialogContentText>
+                                            Clicking 'Remove' will remove your brewery information forever.
+                                        </DialogContentText>
+                                    </DialogContent>
+                                    <DialogActions>
+                                        <Button onClick={this.handleClose}>Cancel</Button>
+                                        <Button onClick={() => this.deleteItem(item.id)}>Remove</Button>
+                                    </DialogActions>
+                                </Dialog>
                             </CardContent>
                         </Card>
                     )})
