@@ -103,7 +103,6 @@ class MyBreweries extends Component {
                                 </Link>
                                 <br />
                                 <Button
-                                    // onClick={() => this.deleteItem(item.id)}
                                     onClick={this.handleClickOpen}
                                     variant="contained"
                                     color="secondary"

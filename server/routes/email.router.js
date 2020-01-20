@@ -52,10 +52,10 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         if (err) {
           console.error('there was an error: ', err);
         } else {
-          console.log('here is the res: ', res)
+          console.log( res )
         }
       })
-
-});
+})
+;
 
 module.exports = router;

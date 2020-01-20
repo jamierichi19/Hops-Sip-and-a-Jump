@@ -7,6 +7,11 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 const styles =  {
@@ -31,12 +36,9 @@ class Email extends Component {
 
   state = {
       subject: '',
-      body: ''
+      body: '',
+      open: false
   }
-
-  // componentDidMount(){
-  //   this.props.dispatch()
-  // }
 
   handleInputChangeFor = propertyName => (event) => {
       this.setState({
@@ -45,9 +47,22 @@ class Email extends Component {
       console.log(event.target.value)
     }
 
-    getEmailList = (id) => {
-      this.props.dispatch({ type: 'GET_EMAIL_LIST', payload: {subject: this.state.subject, body: this.state.body, id: id} })
-    }
+  getEmailList = (id) => {
+    this.props.dispatch({ type: 'GET_EMAIL_LIST', payload: {subject: this.state.subject, body: this.state.body, id: id} })
+    this.setState({
+      subject: '',
+      body: '',
+      open: false
+    })
+  }
+
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+  
+  handleClose = () => {
+    this.setState({ open: false });
+  };
 
     render() {
 
@@ -89,10 +104,28 @@ class Email extends Component {
                     variant="contained"
                     className={classes.button}
                     color="primary"
-                    onClick={() => this.getEmailList(this.props.imageReducer[0].id)}
+                    onClick={this.handleClickOpen}
                     >
                     Send
                     </Button>
+                    <Dialog
+                    open={this.state.open}
+                    onClose={this.handleClose}
+                    >
+                      <DialogTitle>Confirm Message:</DialogTitle>
+                      <DialogContent>
+                        <DialogContentText>
+                            Subject: {this.state.subject}
+                            <br />
+                            Body: {this.state.body}
+                        </DialogContentText>
+                        <DialogActions>
+                          <Button onClick={this.handleClose}>Cancel</Button>
+                          <Button onClick={() => this.getEmailList(this.props.imageReducer[0].id)}>Send</Button>
+                        </DialogActions>
+                      </DialogContent>
+
+                    </Dialog>
                 </div>
             </div>
         )
