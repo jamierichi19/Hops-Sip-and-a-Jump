@@ -69,6 +69,7 @@ class Search extends Component {
     }
 
     render() {
+
       const { classes } = this.props;
         return (
             <div>
@@ -110,6 +111,7 @@ class Search extends Component {
                                     <Button
                                     variant="contained"
                                     color="primary"
+                                    className={classes.button}
                                     onClick={() => this.getDetailsAndComments(item.id)}
                                     >
                                       Veiw Details

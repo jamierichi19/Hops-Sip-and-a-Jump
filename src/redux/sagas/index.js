@@ -11,6 +11,9 @@ import editBreweryDetailsSaga from './editBreweryDetailsSaga';
 import searchBrewerySaga from './searchBrewerySaga';
 import getDetailsSaga from './getDetailsSaga';
 import addCommentSaga from './addCommentSaga';
+import likeBrewerySaga from './likeBrewerySaga';
+import unlikeBrewerySaga from './unlikeBrewerySaga';
+import getFavoritesSaga from './getFavoritesSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -33,5 +36,8 @@ export default function* rootSaga() {
     searchBrewerySaga(),
     getDetailsSaga(),
     addCommentSaga(),
+    likeBrewerySaga(),
+    unlikeBrewerySaga(),
+    getFavoritesSaga(),
   ]);
 }

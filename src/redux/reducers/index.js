@@ -5,7 +5,8 @@ import user from './userReducer';
 import imageReducer from './imageReducer';
 import commentsReducer from './commentsReducer';
 import searchReducer from './searchReducer';
-import detailsReducer from './detailsReducer'
+import detailsReducer from './detailsReducer';
+import favoritesReducer from './favoritesReducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   commentsReducer,
   searchReducer,
   detailsReducer,
+  favoritesReducer
 });
 
 export default rootReducer;

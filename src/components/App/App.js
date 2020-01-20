@@ -13,11 +13,11 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
-import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import DetailsPage from '../DetailsPage/DetailsPage';
 import BreweryDetails from '../BreweryDetails/BreweryDetails';
+import FavoritesDetails from '../FavoritesDetails/FavoritesDetails';
 
 import './App.css';
 
@@ -36,11 +36,6 @@ class App extends Component {
             <Redirect exact from="/" to="/home" />
             {/* Visiting localhost:3000/about will show the about page.
             This is a route anyone can see, no login necessary */}
-            <Route
-              exact
-              path="/about"
-              component={AboutPage}
-            />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
@@ -60,11 +55,16 @@ class App extends Component {
               path="/brewery-details"
               component={BreweryDetails}
             />
+            <ProtectedRoute
+              exact
+              path="/favorites-details"
+              component={FavoritesDetails}
+            />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
             <ProtectedRoute
               exact
-              path="/info"
+              path="/favorites"
               component={InfoPage}
             />
             {/* If none of the other routes matched, we will show a 404. */}

@@ -57,7 +57,7 @@ const styles =  {
     
   };
 
-class BreweryDetails extends Component {
+class FavoritesDetails extends Component {
 
     state = {
         comment: '',
@@ -77,13 +77,6 @@ class BreweryDetails extends Component {
         this.props.dispatch({ type: 'GET_BREWERY_COMMENTS', payload: id})
     }
 
-    likeBrewery = (id) => {
-        this.setState({
-            liked: true,
-        })
-        this.props.dispatch({type: 'LIKE_BREWERY', payload: {id: id }})
-    }
-
     unlikeBrewery = (id) => {
         this.setState({
             liked: false
@@ -95,32 +88,10 @@ class BreweryDetails extends Component {
 
         const { classes } = this.props;
 
-        const likeBrewery = this.state.liked === false  ? (
-            <div className={classes.container}>
-                <Button 
-                variant="contained"
-                color="primary"
-                className={classes.button}
-                onClick={() => this.likeBrewery(this.props.detailsReducer.id)}
-                >Add to Favorites
-                </Button>
-            </div>
-          ) : ( 
-            <div className={classes.container}>
-                <Button
-                variant="contained"
-                color="secondary"
-                className={classes.button}
-                onClick={() => this.unlikeBrewery(this.props.detailsReducer.id)}
-                >Remove from Favorites
-                </Button>
-            </div>
-          );
-
         return (
             <div>
                 <Typography variant="h2" className={classes.pageTitleCenter}>
-                    Brewery Details
+                    Favorite Brewery Details
                 </Typography>
                 <Grid 
                     container           
@@ -141,7 +112,15 @@ class BreweryDetails extends Component {
                         </Card>
                     </Grid>
                 </Grid>
-                {likeBrewery}
+                <div className={classes.container}>
+                    <Button
+                    variant="contained"
+                    color="secondary"
+                    className={classes.button}
+                    onClick={() => this.unlikeBrewery(this.props.detailsReducer.id)}>
+                        Remove From Favorites
+                    </Button>
+                </div>
                 <div className={classes.container}>
                     <TextField 
                         variant="outlined"
@@ -202,4 +181,4 @@ const putReduxStateOnProps = (reduxStore) => ({
     commentsReducer: reduxStore.commentsReducer,
   });
 
-export default connect(putReduxStateOnProps)(withStyles(styles)(BreweryDetails));
+  export default connect(putReduxStateOnProps)(withStyles(styles)(FavoritesDetails));
