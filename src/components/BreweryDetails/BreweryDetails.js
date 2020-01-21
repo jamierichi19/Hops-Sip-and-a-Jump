@@ -96,6 +96,10 @@ class BreweryDetails extends Component {
         this.props.dispatch({type: 'UNLIKE_BREWERY', payload: id })
     }
 
+    goBack = () => {
+        this.props.history.push(`/home`);
+    }
+
     render() {
 
         const { classes } = this.props;
@@ -124,7 +128,6 @@ class BreweryDetails extends Component {
 
         return (
             <div>
-                {JSON.stringify(this.props.detailsReducer.id)}
                 <Typography variant="h2" className={classes.pageTitleCenter}>
                     Brewery Details
                 </Typography>
@@ -134,7 +137,7 @@ class BreweryDetails extends Component {
                     direction="column"
                     alignItems="center"
                     justify="center"
-                    style={{ minHeight: '50vh' }}>
+                    >
                     <Grid>
                         <Card className={classes.card}>
                             <CardContent>
@@ -197,6 +200,14 @@ class BreweryDetails extends Component {
                             </Card>
                         </Grid>
                     </Grid>
+                </div>
+                <div className={classes.container}>
+                    <Button
+                    variant="contained"
+                    color="secondary"
+                    className={classes.button}
+                    onClick={this.goBack}
+                    >Back</Button>
                 </div>
             </div>
         )
