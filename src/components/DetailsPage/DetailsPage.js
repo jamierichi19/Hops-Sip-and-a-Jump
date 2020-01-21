@@ -50,7 +50,10 @@ const styles =  {
     },
     table: {
         width: 700,
-      },
+    },
+    container: {
+        textAlign: 'center'
+    }
   };
 
 class DetailsPage extends Component {
@@ -96,7 +99,6 @@ class DetailsPage extends Component {
         this.setState({
           [propertyName]: event.target.value,
         });
-        console.log(event.target.value)
     };
 
     render() {
@@ -105,17 +107,15 @@ class DetailsPage extends Component {
 
         const editDetails = this.state.edit === false  ? (
             <Fragment>
+                <Typography variant="h2" className={classes.pageTitle}>
+                    My Brewery Details
+                </Typography>
                 <Grid
                  container           
-                 spacing={0}
-                 direction="column"
-                 alignItems="center"
+                 spacing={4}
                  justify="center"
-                 style={{ minHeight: '50vh' }}>
+                >
                     <Grid item>
-                        <Typography variant="h2" className={classes.pageTitle}>
-                            My Brewery Details
-                        </Typography>
                         <Card className={classes.card}>
                             <CardContent>
                                 <p>{this.props.imageReducer[0].brewery_name}</p>
@@ -141,6 +141,9 @@ class DetailsPage extends Component {
             </Fragment>
             ) : ( 
                 <Fragment>
+                    <Typography variant="h2" className={classes.pageTitle}>
+                        Edit Brewery Details
+                    </Typography>
                     <Grid
                     container           
                     spacing={0}
@@ -149,9 +152,6 @@ class DetailsPage extends Component {
                     justify="center"
                     style={{ minHeight: '50vh' }}>
                         <Grid item>
-                            <Typography variant="h2" className={classes.pageTitle}>
-                                Edit Brewery Details
-                            </Typography>
                             <Card className={classes.card}>
                                 <CardContent>
                                     <div>
@@ -225,7 +225,7 @@ class DetailsPage extends Component {
                                     <Button
                                     variant="contained"
                                     color="secondary"
-                                    // className={classes.buttonSpacingRight}
+                                    className={classes.buttonSpacingRight}
                                     onClick={this.cancel}
                                     >
                                     Cancel
@@ -233,7 +233,7 @@ class DetailsPage extends Component {
                                     <Button
                                     variant="contained"
                                     color="primary"
-                                    // className={classes.buttonSpacingLeft}
+                                    className={classes.buttonSpacingLeft}
                                     onClick={this.editDetails}
                                     >
                                     Save
@@ -279,7 +279,9 @@ class DetailsPage extends Component {
                     </Grid>
                 </Grid>
                 ) : ( 
-                <h3>You have zero comments about your brewery yet</h3>
+                    <div className={classes.container}>
+                        <h3>You have zero comments about your brewery yet</h3>
+                    </div>
                 );
 
         return (
