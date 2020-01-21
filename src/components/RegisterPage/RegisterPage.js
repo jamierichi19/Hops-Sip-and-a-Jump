@@ -79,8 +79,7 @@ class RegisterPage extends Component {
         spacing={0}
         direction="column"
         alignItems="center"
-        justify="center"
-        style={{ minHeight: '100vh' }}>
+        justify="center">
           <Grid>
             <Card className={classes.card}>
               <CardContent>

@@ -15,6 +15,7 @@ const styles =  {
     minWidth: 275,
     width: 300,
     textAlign: 'center',
+    marginTop: '100px'
   },
   pageTitle: {
     margin: '20px auto 20px auto'
@@ -68,7 +69,7 @@ class LoginPage extends Component {
         direction="column"
         alignItems="center"
         justify="center"
-        style={{ minHeight: '100vh' }}>
+        >
         <Grid item >
           <Card className={classes.card}>
             <CardContent>
