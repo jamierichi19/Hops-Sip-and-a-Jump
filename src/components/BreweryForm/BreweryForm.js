@@ -80,6 +80,12 @@ class BreweryForm extends Component {
             id: this.props.user.id 
         }})
         this.setState({
+            name: '',
+            bio: '',
+            street: '',
+            city: '',
+            state: '',
+            zip: '',
             open: false
         })
     }
@@ -197,7 +203,6 @@ class BreweryForm extends Component {
                         </DialogActions>
                 </Dialog>
                 
-                <hr className={classes.visibleSeperator} />
             </Fragment>
         )
     }

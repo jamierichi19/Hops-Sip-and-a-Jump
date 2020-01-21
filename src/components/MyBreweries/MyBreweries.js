@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -38,7 +38,8 @@ const styles =  {
     card: {
         width: 300,
         height: 300,
-        textAlign: 'center'
+        textAlign: 'center',
+        margin: 'auto'
       },
     removeButton: {
         marginTop: '20px',
@@ -80,59 +81,64 @@ class MyBreweries extends Component {
 
         const { classes } = this.props;
 
-        return (
-            <>
-             <Typography variant="h2" className={classes.pageTitleCenter}>
+        var myBrewerySection = this.props.imageReducer.length < 1 ? 
+        <Typography variant="h2" className={classes.pageTitleCenter}>
+            Add a Brewery
+        </Typography> : (this.props.imageReducer.length <= 1 ? 
+            <Typography variant="h2" className={classes.pageTitleCenter}>
                 My Brewery
-            </Typography>
-            <Grid
-                container
-                spacing={0}
-                direction="column"
-                alignItems="center"
-                justify="center"
-                style={{ minHeight: '20vh' }}>
-                <Grid item>
+            </Typography> : 
+                <Typography variant="h2" className={classes.pageTitleCenter}>
+                    My Breweries
+                </Typography>);
+            
+
+        return (
+            <Fragment>
+            {myBrewerySection}
+            <Grid container spacing={4}>
                 {this.props.imageReducer.map((item, i) => {
                     return (
-                        <Card key={item.id} className={classes.card}>
-                            <CardContent>
-                                <div className={classes.spacing}>{item.brewery_name}</div>
-                                <Link to="/details">
-                                    <CardMedia className={classes.media }image={item.image_url} alt={item.id}  />
-                                </Link>
-                                <br />
-                                <Button
-                                    onClick={this.handleClickOpen}
-                                    variant="contained"
-                                    color="secondary"
-                                    className={classes.removeButton}
-                                >
-                                Remove
-                                </Button>
-                                <Dialog
-                                open={this.state.open}
-                                onClose={this.handleClose}
-                                >
-                                    <DialogTitle>Are You sure?</DialogTitle>
-                                    <DialogContent>
-                                        <DialogContentText>
-                                            Clicking 'Remove' will remove your brewery information forever.
-                                        </DialogContentText>
-                                    </DialogContent>
-                                    <DialogActions>
-                                        <Button onClick={this.handleClose}>Cancel</Button>
-                                        <Button onClick={() => this.deleteItem(item.id)}>Remove</Button>
-                                    </DialogActions>
-                                </Dialog>
-                            </CardContent>
-                        </Card>
+                        <Grid item  key={item.id}>
+                            <Card className={classes.card}>
+                                <CardContent>
+                                    <div className={classes.spacing}>{item.brewery_name}</div>
+                                    <Link to="/details">
+                                        <CardMedia className={classes.media }image={item.image_url} alt={item.id}  />
+                                    </Link>
+                                    <br />
+                                    <Button
+                                        onClick={this.handleClickOpen}
+                                        variant="contained"
+                                        color="secondary"
+                                        className={classes.removeButton}
+                                    >
+                                    Remove
+                                    </Button>
+                                    <Dialog
+                                    open={this.state.open}
+                                    onClose={this.handleClose}
+                                    >
+                                        <DialogTitle>Are You sure?</DialogTitle>
+                                        <DialogContent>
+                                            <DialogContentText>
+                                                Clicking 'Remove' will remove your brewery information forever.
+                                            </DialogContentText>
+                                        </DialogContent>
+                                        <DialogActions>
+                                            <Button onClick={this.handleClose}>Cancel</Button>
+                                            <Button onClick={() => this.deleteItem(item.id)}>Remove</Button>
+                                        </DialogActions>
+                                    </Dialog>
+                                </CardContent>
+                            </Card>
+                        </Grid>
                     )})
                 }
-                </Grid>
+                
             </Grid>
             <hr className={classes.visibleSeperator}/>
-            </>
+            </Fragment>
         )
     }
 }
