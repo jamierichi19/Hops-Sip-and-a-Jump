@@ -62,7 +62,8 @@ class BreweryDetails extends Component {
     state = {
         comment: '',
         breweryId: '',
-        liked: false       
+        liked: false,
+        id: this.props.detailsReducer.id     
     }
 
     handleInputChangeFor = propertyName => (event) => {
@@ -73,8 +74,12 @@ class BreweryDetails extends Component {
     }
 
     addComment = (id) => {
-        this.props.dispatch({ type: 'ADD_COMMENT', payload: this.state})
-        this.props.dispatch({ type: 'GET_BREWERY_COMMENTS', payload: id})
+        this.props.dispatch({ type: 'ADD_COMMENT', 
+        payload: {id: this.props.detailsReducer.id, comment: this.state.comment, breweryId: this.state.breweryId}
+    });
+    this.setState({
+        comment: ''
+    })
     }
 
     likeBrewery = (id) => {
@@ -119,6 +124,7 @@ class BreweryDetails extends Component {
 
         return (
             <div>
+                {JSON.stringify(this.props.detailsReducer.id)}
                 <Typography variant="h2" className={classes.pageTitleCenter}>
                     Brewery Details
                 </Typography>
