@@ -48,11 +48,11 @@ const styles =  {
         height: 140
       },
     table: {
-    width: 700,
+    width: 'auto',
     },
     tableCard: {
         textAlign: 'center',
-        width: 750,
+        width: 'auto',
     },
     
   };
