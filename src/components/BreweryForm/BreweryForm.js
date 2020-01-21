@@ -47,20 +47,20 @@ class BreweryForm extends Component {
         id: this.props.user.id
     };
 
-    addBrewery = (event) => {
-        event.preventDefault();
-        console.log(this.state)
-        this.props.dispatch({ type: 'ADD_BREWERY', payload: this.state });
-        this.setState({
-            name: '',
-            bio: '',
-            street: '',
-            city: '',
-            state: '',
-            zip: '',
-        })
+    // addBrewery = (event) => {
+    //     event.preventDefault();
+    //     console.log(this.state)
+    //     this.props.dispatch({ type: 'ADD_BREWERY', payload: this.state });
+    //     this.setState({
+    //         name: '',
+    //         bio: '',
+    //         street: '',
+    //         city: '',
+    //         state: '',
+    //         zip: '',
+    //     })
 
-    }; 
+    // }; 
 
     handleInputChangeFor = propertyName => (event) => {
         this.setState({
@@ -70,7 +70,16 @@ class BreweryForm extends Component {
 
     handleFinishedUpload = info => {
         console.log('Access it on s3 at', info.fileUrl)
-        this.props.dispatch({ type: 'POST_IMAGE_URL', payload: {image: info.fileUrl, id: this.props.user.id }})
+        this.props.dispatch({ type: 'ADD_BREWERY', payload: {
+            name: this.state.name,
+            bio: this.state.bio,
+            street: this.state.street,
+            city: this.state.city,
+            state: this.state.state,
+            zip: this.state.zip,
+            image: info.fileUrl, 
+            id: this.props.user.id 
+        }})
     }
 
     render() {
@@ -91,7 +100,9 @@ class BreweryForm extends Component {
                         <Typography variant="h2" className={classes.pageTitle}>
                             Enter Your Brewery
                         </Typography>
-                        <form onSubmit={this.addBrewery} className={classes.form}>
+                        <form 
+                        // onSubmit={this.addBrewery} className={classes.form}
+                        >
                             <div>
                                 <TextField
                                     type="text"

@@ -3,7 +3,6 @@ import loginSaga from './loginSaga';
 import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
 import addBrewerySaga from './addBrewerySaga';
-import imageInfoSaga from './imageInfoSaga';
 import getImageSaga from './getImageSaga';
 import deleteBrewerySaga from './deleteBrewerySaga';
 import getCommentsSaga from './getCommentsSaga';
@@ -29,7 +28,6 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     addBrewerySaga(),
-    imageInfoSaga(),
     getImageSaga(),
     deleteBrewerySaga(),
     getCommentsSaga(),

@@ -11,9 +11,10 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     const city = req.body.city;
     const state = req.body.state;
     const zip = req.body.zip;
-    const id = req.body.id
-    const queryString = `INSERT INTO "brewery_info" (brewery_name, bio, street, city, state, zip, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7);`;
-    pool.query(queryString, [name, bio, street, city, state, zip, id])
+    const id = req.body.id;
+    const image = req.body.image
+    const queryString = `INSERT INTO "brewery_info" (brewery_name, bio, street, city, state, zip, image_url, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`;
+    pool.query(queryString, [name, bio, street, city, state, zip, image, id])
     .then(() => res.sendStatus(201))
     .catch(() => res.sendStatus(500))
 });

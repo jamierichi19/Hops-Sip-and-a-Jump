@@ -1,9 +1,11 @@
 import axios from 'axios';
-import { takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 
 function* postBrewery(action){
     try{
+        console.log(action.payload)
         yield axios.post(`/api/brewery`, action.payload);
+        yield put({type: 'GET_BREWERY_IMAGE'})
     } catch (error){
         console.log(error)
     }
