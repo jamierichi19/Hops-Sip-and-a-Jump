@@ -96,7 +96,7 @@ class Search extends Component {
                   Search
                 </Button> 
                 </div>
-                <Grid container spacing={4} >
+                <Grid container spacing={4} justify="center">
                 {this.props.searchReducer.map((item, i) => {
                     return (
                       <Grid item key={item.id}> 
