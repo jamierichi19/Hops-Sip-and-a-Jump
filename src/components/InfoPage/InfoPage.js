@@ -67,7 +67,7 @@ class InfoPage extends Component {
         <Typography variant="h2" className={classes.pageTitleCenter}>
           My Favorites
         </Typography>
-        <Grid container spacing={4} >
+        <Grid container spacing={4} justify="center">
                 {this.props.favoritesReducer.map((item, i) => {
                     return (
                       <Grid item key={item.id}> 
