@@ -50,7 +50,10 @@ const styles =  {
     },
     media: {
         height: 140
-      },
+    },
+    gridCenter: {
+        alignContent: "center",
+    }
   };
 
 
@@ -96,10 +99,10 @@ class MyBreweries extends Component {
         return (
             <Fragment>
             {myBrewerySection}
-            <Grid container spacing={4}>
+            <Grid container spacing={4} justify="center">
                 {this.props.imageReducer.map((item, i) => {
                     return (
-                        <Grid item  key={item.id}>
+                        <Grid item  key={item.id}  >
                             <Card className={classes.card}>
                                 <CardContent>
                                     <div className={classes.spacing}>{item.brewery_name}</div>
