@@ -23,7 +23,7 @@ const styles =  {
     },
     tableCard: {
         textAlign: 'center',
-        width: 750,
+        width: 'auto',
     },
     pageTitle: {
       margin: '20px auto 20px auto',
@@ -49,7 +49,7 @@ const styles =  {
         marginRight: '2.5px'
     },
     table: {
-        width: 700,
+        width: 'auto',
     },
     container: {
         textAlign: 'center'
