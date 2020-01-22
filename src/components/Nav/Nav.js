@@ -19,7 +19,7 @@ const styles =  {
   },
   buttonStyling: {
     textDecoration: 'none',
-    color: '#D5D5D5'
+    color: '#ff8c00'
   }
 };
 
