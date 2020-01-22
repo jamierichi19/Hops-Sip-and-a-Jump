@@ -53,6 +53,9 @@ const styles =  {
     },
     container: {
         textAlign: 'center'
+    },
+    topMargin: {
+        marginTop: '100px'
     }
   };
 
@@ -286,23 +289,25 @@ class DetailsPage extends Component {
 
         return (
             <Fragment>
-            <div>
-                {editDetails}
-            </div>
-            <div>
-                <Typography variant="h2" className={classes.pageTitle}>
-                    What Are they Saying?
-                </Typography>
-                {commentsDisplay}
-                <div className={classes.center}>
-                    <Button 
-                    variant="contained"
-                    color="secondary"
-                    onClick={this.goBack}
-                    >
-                    Back
-                    </Button>
-                </div>
+                <div className={classes.topMargin}>
+                    <div>
+                        {editDetails}
+                    </div>
+                    <div>
+                        <Typography variant="h2" className={classes.pageTitle}>
+                            What Are they Saying?
+                        </Typography>
+                        {commentsDisplay}
+                        <div className={classes.center}>
+                            <Button 
+                            variant="contained"
+                            color="secondary"
+                            onClick={this.goBack}
+                            >
+                            Back
+                            </Button>
+                        </div>
+                    </div>
             </div>
             </Fragment>
         )
