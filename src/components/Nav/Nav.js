@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
-// import './Nav.css';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -17,9 +16,12 @@ const styles =  {
   },
   test: {
     float: 'right'
+  },
+  buttonStyling: {
+    textDecoration: 'none',
+    color: '#D5D5D5'
   }
 };
-
 
 class Nav extends Component {
 
@@ -30,12 +32,12 @@ class Nav extends Component {
     const favorites = this.props.user.type === 'patron'  ? (
       <Fragment>
         <Button> 
-          <Link className="nav-link" to="/home" style={{textDecoration: "none", color: "#D5D5D5"}}>
+          <Link className={classes.buttonStyling} to="/home" >
             {this.props.user.id ? 'Home' : 'Login / Register'}
           </Link>
         </Button>
         <Button>
-          <Link className="nav-link" to="/favorites" style={{textDecoration: "none", color: "#D5D5D5"}}>
+          <Link className={classes.buttonStyling} to="/favorites">
             My Favorites
           </Link>
         </Button>
@@ -44,21 +46,20 @@ class Nav extends Component {
     ) : ( 
       <Fragment>
           <Button>
-              <Link className="nav-link" to="/home" style={{textDecoration: "none", color: "#D5D5D5"}}>
+              <Link className={classes.buttonStyling} to="/home">
                 {this.props.user.id ? 'Home' : 'Login / Register'}
               </Link>
               </Button>
-          <LogOutButton className="nav-link" />
+          <LogOutButton />
       </Fragment>
     );
     
-
     return (
       <AppBar>
       <Grid container spacing={4}>
         <Grid item className={classes.buttonLeft} sm={8}>
-          <Link to="/home" style={{textDecoration: "none", color: "#D5D5D5"}}>
-            <h2 className="nav-title">Hops, Sip, & a Jump</h2>
+          <Link to="/home" className={classes.buttonStyling} >
+            <h2>Hops, Sip, & a Jump</h2>
           </Link>
         </Grid>
         <Grid item sm={4} className={classes.rightSide}>
@@ -72,12 +73,6 @@ class Nav extends Component {
   }
 }
 
-
-// Instead of taking everything from state, we just want the user
-// object to determine if they are logged in
-// if they are logged in, we show them a few more links 
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({ user }) => ({ user });
 const mapStateToProps = state => ({
   user: state.user,
 });
