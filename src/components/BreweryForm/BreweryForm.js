@@ -38,6 +38,9 @@ const styles =  {
     },
     addButton: {
         marginTop: '30px'
+    },
+    topMargin: {
+        marginTop: '100px'
     }
   };
 
@@ -103,14 +106,16 @@ class BreweryForm extends Component {
 
         return (
             <Fragment>
-                <div className={classes.container}>
-                <Button
-                variant="contained"
-                color="primary"
-                className={classes.addButton}
-                onClick={this.handleClickOpen}
-                >Add A Brewery
-                </Button>
+                <div className={classes.topMargin}>
+                    <div className={classes.container}>
+                    <Button
+                    variant="contained"
+                    color="primary"
+                    className={classes.addButton}
+                    onClick={this.handleClickOpen}
+                    >Add A Brewery
+                    </Button>
+                    </div>
                 </div>
                 <Dialog
                 open={this.state.open}

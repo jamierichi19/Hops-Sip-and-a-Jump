@@ -54,6 +54,9 @@ const styles =  {
         textAlign: 'center',
         width: 'auto',
     },
+    topMargin: {
+        marginTop: '100px'
+    }
     
   };
 
@@ -89,7 +92,7 @@ class FavoritesDetails extends Component {
         const { classes } = this.props;
 
         return (
-            <div>
+            <div className={classes.topMargin}>
                 <Typography variant="h2" className={classes.pageTitleCenter}>
                     Favorite Brewery Details
                 </Typography>

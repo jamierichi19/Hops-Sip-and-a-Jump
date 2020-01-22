@@ -27,6 +27,9 @@ const styles =  {
   button: {
     marginBottom: '10px'
   },
+  topMargin: {
+    marginTop: '100px'
+  }
 };
 
 
@@ -70,7 +73,7 @@ class LoginPage extends Component {
         alignItems="center"
         justify="center"
         >
-        <Grid item >
+        <Grid item className={classes.topMargin}>
           <Card className={classes.card}>
             <CardContent>
             {this.props.errors.loginMessage && (

@@ -45,6 +45,9 @@ const styles =  {
   media: {
     height: 140
   },
+  topMargin: {
+    marginTop: '100px'
+}
   
 };
 
@@ -72,7 +75,7 @@ class Search extends Component {
 
       const { classes } = this.props;
         return (
-            <div>
+            <div className={classes.topMargin}>
               <Typography variant="h2" className={classes.pageTitleCenter}>
                 Search for a Brewery
               </Typography>

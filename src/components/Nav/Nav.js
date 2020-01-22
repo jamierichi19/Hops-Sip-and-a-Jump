@@ -2,52 +2,79 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import './Nav.css';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 
+const styles =  {
+  buttonLeft: {
+    float: 'left'
+  },
+  rightSide: {
+    marginTop: '40px'
+  },
+  test: {
+    float: 'right'
+  },
+  buttonStyling: {
+    textDecoration: 'none',
+    color: '#D5D5D5'
+  }
+};
 
 class Nav extends Component {
+
   render() {
+
+    const { classes } = this.props;
 
     const favorites = this.props.user.type === 'patron'  ? (
       <Fragment>
-        <Link className="nav-link" to="/favorites">
-          My Favorites
-        </Link>
+        <Button> 
+          <Link className={classes.buttonStyling} to="/home" >
+            {this.props.user.id ? 'Home' : 'Login / Register'}
+          </Link>
+        </Button>
+        <Button>
+          <Link className={classes.buttonStyling} to="/favorites">
+            My Favorites
+          </Link>
+        </Button>
         <LogOutButton className="nav-link"/>
       </Fragment>
     ) : ( 
-      <LogOutButton className="nav-link"/>
+      <Fragment>
+          <Button>
+              <Link className={classes.buttonStyling} to="/home">
+                {this.props.user.id ? 'Home' : 'Login / Register'}
+              </Link>
+              </Button>
+          <LogOutButton />
+      </Fragment>
     );
-
+    
     return (
-      <div className="nav">
-        <Link to="/home">
-          <h2 className="nav-title">Hops, Sip, & a Jump</h2>
-        </Link>
-        <div className="nav-right">
-          <Link className="nav-link" to="/home">
-            {/* Show this link if they are logged in or not,
-            but call this link 'Home' if they are logged in,
-            and call this link 'Login / Register' if they are not */}
-            {this.props.user.id ? 'Home' : 'Login / Register'}
+      <AppBar>
+      <Grid container spacing={4}>
+        <Grid item className={classes.buttonLeft} sm={8}>
+          <Link to="/home" className={classes.buttonStyling} >
+            <h2>Hops, Sip, & a Jump</h2>
           </Link>
-          {/* Show the link to the info page and the logout button if the user is logged in */}
+        </Grid>
+        <Grid item sm={4} className={classes.rightSide}>
+          <span className={classes.test}>
           {favorites}
-          {/* Always show this link since the about page is not protected */}
-        </div>
-      </div>
+          </span>
+        </Grid>
+      </Grid>
+      </AppBar>
     )
   }
 }
 
-
-// Instead of taking everything from state, we just want the user
-// object to determine if they are logged in
-// if they are logged in, we show them a few more links 
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({ user }) => ({ user });
 const mapStateToProps = state => ({
   user: state.user,
 });
 
-export default connect(mapStateToProps)(Nav);
+export default connect(mapStateToProps)(withStyles(styles)(Nav));

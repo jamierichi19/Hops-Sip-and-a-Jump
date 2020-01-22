@@ -28,6 +28,9 @@ const styles =  {
   },
   button: {
     marginBottom: '20px'
+  },
+  topMargin: {
+    marginTop: '100px'
   }
 };
 
@@ -80,7 +83,7 @@ class RegisterPage extends Component {
         direction="column"
         alignItems="center"
         justify="center">
-          <Grid>
+          <Grid className={classes.topMargin}>
             <Card className={classes.card}>
               <CardContent>
                 {this.props.errors.registrationMessage && (
