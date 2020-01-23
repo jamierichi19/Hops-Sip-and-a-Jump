@@ -19,7 +19,8 @@ import TableRow from '@material-ui/core/TableRow';
 const styles =  {
     pageTitleCenter: {
         margin: '20px auto 20px auto',
-        textAlign: 'center'
+        textAlign: 'center',
+        marginTop: '100px'
     },
     button: {
       marginBottom: '10px',
@@ -54,7 +55,6 @@ const styles =  {
         textAlign: 'center',
         width: 'auto',
     },
-    
   };
 
 class BreweryDetails extends Component {

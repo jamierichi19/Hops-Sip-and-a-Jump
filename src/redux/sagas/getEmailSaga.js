@@ -11,7 +11,6 @@ function* getEmail(action) {
             subject: action.payload.subject,
             body: action.payload.body
         }
-        console.log(data)
 
         yield axios.post(`api/email`, data);
     }
