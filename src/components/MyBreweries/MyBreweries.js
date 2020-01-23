@@ -16,6 +16,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+//Material UI Icons
+import RemoveIcon from '@material-ui/icons/Remove';
 
 const styles =  {
     pageTitle: {
@@ -53,6 +55,9 @@ const styles =  {
     },
     gridCenter: {
         alignContent: "center",
+    },
+    leftIcon: {
+        marginRight: '5px'
     }
   };
 
@@ -116,7 +121,8 @@ class MyBreweries extends Component {
                                         color="secondary"
                                         className={classes.removeButton}
                                     >
-                                    Remove
+                                        <RemoveIcon className={classes.leftIcon} />
+                                        Brewery
                                     </Button>
                                     <Dialog
                                     open={this.state.open}

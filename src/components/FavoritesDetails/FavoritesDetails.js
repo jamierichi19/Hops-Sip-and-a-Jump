@@ -16,6 +16,10 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
+//Material UI Icons
+import RemoveIcon from '@material-ui/icons/Remove';
+import AddCommentIcon from '@material-ui/icons/AddComment';
+
 const styles =  {
     pageTitleCenter: {
         margin: '20px auto 20px auto',
@@ -56,6 +60,9 @@ const styles =  {
     },
     topMargin: {
         marginTop: '100px'
+    },
+    leftIcon: {
+        marginRight: '5px'
     }
     
   };
@@ -64,20 +71,18 @@ class FavoritesDetails extends Component {
 
     state = {
         comment: '',
-        breweryId: '',
         liked: false       
     }
 
     handleInputChangeFor = propertyName => (event) => {
         this.setState({
           [propertyName]: event.target.value,
-          breweryId: this.props.detailsReducer.id
         });
     }
 
     addComment = (id) => {
-        this.props.dispatch({ type: 'ADD_COMMENT', payload: this.state})
-        this.props.dispatch({ type: 'GET_BREWERY_COMMENTS', payload: id})
+        this.props.dispatch({ type: 'ADD_COMMENT', 
+        payload: {id: this.props.detailsReducer.id, comment: this.state.comment}})
     }
 
     unlikeBrewery = (id) => {
@@ -93,6 +98,7 @@ class FavoritesDetails extends Component {
 
         return (
             <div className={classes.topMargin}>
+                {JSON.stringify(this.props.detailsReducer)}
                 <Typography variant="h2" className={classes.pageTitleCenter}>
                     Favorite Brewery Details
                 </Typography>
@@ -120,8 +126,10 @@ class FavoritesDetails extends Component {
                     variant="contained"
                     color="secondary"
                     className={classes.button}
-                    onClick={() => this.unlikeBrewery(this.props.detailsReducer.id)}>
-                        Remove From Favorites
+                    onClick={() => this.unlikeBrewery(this.props.detailsReducer.id)}
+                    >
+                        <RemoveIcon className={classes.leftIcon} />
+                        Favorites
                     </Button>
                 </div>
                 <div className={classes.container}>
@@ -136,9 +144,10 @@ class FavoritesDetails extends Component {
                         variant="contained"
                         color="primary"
                         className={classes.button}
-                        onClick={() => this.addComment(this.state.breweryId)}
+                        onClick={() => this.addComment(this.props.detailsReducer.id)}
                         >
-                        Add Comment
+                        <AddCommentIcon className={classes.leftIcon} />
+                        Comment
                     </Button>
                     <Grid
                     container           

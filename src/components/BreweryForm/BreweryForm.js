@@ -12,6 +12,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+//Material UI Icons
+import AddIcon from '@material-ui/icons/Add';
+
 
 const styles =  {
     container: {
@@ -41,6 +44,9 @@ const styles =  {
     },
     topMargin: {
         marginTop: '100px'
+    },
+    leftIcon: {
+        marginRight: '5px'
     }
   };
 
@@ -113,7 +119,9 @@ class BreweryForm extends Component {
                     color="primary"
                     className={classes.addButton}
                     onClick={this.handleClickOpen}
-                    >Add A Brewery
+                    >
+                        <AddIcon className={classes.leftIcon} />
+                        Brewery
                     </Button>
                     </div>
                 </div>

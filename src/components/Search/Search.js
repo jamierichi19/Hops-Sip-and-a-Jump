@@ -11,6 +11,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
+import SearchIcon from '@material-ui//icons/Search';
 
 
 const styles =  {
@@ -96,7 +97,7 @@ class Search extends Component {
                 className={classes.button}
                 onClick={this.searchBrewery}
                 >
-                  Search
+                  <SearchIcon />
                 </Button> 
                 </div>
                 <Grid container spacing={4} justify="center">

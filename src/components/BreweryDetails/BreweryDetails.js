@@ -15,6 +15,11 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+// Material UI Icons
+import AddComment from '@material-ui/icons/AddComment';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const styles =  {
     pageTitleCenter: {
@@ -55,13 +60,15 @@ const styles =  {
         textAlign: 'center',
         width: 'auto',
     },
+    leftIcon: {
+        marginRight: '5px'
+    }
   };
 
 class BreweryDetails extends Component {
 
     state = {
         comment: '',
-        breweryId: '',
         liked: false,
         id: this.props.detailsReducer.id     
     }
@@ -69,13 +76,12 @@ class BreweryDetails extends Component {
     handleInputChangeFor = propertyName => (event) => {
         this.setState({
           [propertyName]: event.target.value,
-          breweryId: this.props.detailsReducer.id
         });
     }
 
     addComment = (id) => {
         this.props.dispatch({ type: 'ADD_COMMENT', 
-        payload: {id: this.props.detailsReducer.id, comment: this.state.comment, breweryId: this.state.breweryId}
+        payload: {id: this.props.detailsReducer.id, comment: this.state.comment}
     });
     this.setState({
         comment: ''
@@ -111,7 +117,9 @@ class BreweryDetails extends Component {
                 color="primary"
                 className={classes.button}
                 onClick={() => this.likeBrewery(this.props.detailsReducer.id)}
-                >Add to Favorites
+                >
+                    <AddIcon className={classes.leftIcon} />
+                    Favorites
                 </Button>
             </div>
           ) : ( 
@@ -121,7 +129,9 @@ class BreweryDetails extends Component {
                 color="secondary"
                 className={classes.button}
                 onClick={() => this.unlikeBrewery(this.props.detailsReducer.id)}
-                >Remove from Favorites
+                >
+                    <RemoveIcon className={classes.leftIcon} />
+                    Favorites
                 </Button>
             </div>
           );
@@ -163,9 +173,10 @@ class BreweryDetails extends Component {
                         variant="contained"
                         color="primary"
                         className={classes.button}
-                        onClick={() => this.addComment(this.state.breweryId)}
+                        onClick={() => this.addComment(this.props.detailsReducer.id)}
                         >
-                        Add Comment
+                        <AddComment className={classes.leftIcon} />
+                        Comment
                     </Button>
                     <Grid
                     container           
@@ -207,7 +218,9 @@ class BreweryDetails extends Component {
                     color="secondary"
                     className={classes.button}
                     onClick={this.goBack}
-                    >Back</Button>
+                    >
+                        <ArrowBackIcon className={classes.leftIcon} />
+                        Back</Button>
                 </div>
             </div>
         )
