@@ -28,6 +28,8 @@ const styles =  {
     tableCard: {
         textAlign: 'center',
         width: 'auto',
+        maxHeight: '500px',
+        overflow: 'auto'
     },
     pageTitle: {
       margin: '20px auto 20px auto',

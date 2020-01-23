@@ -59,6 +59,8 @@ const styles =  {
     tableCard: {
         textAlign: 'center',
         width: 'auto',
+        maxHeight: '500px',
+        overflow: 'auto'
     },
     leftIcon: {
         marginRight: '5px'

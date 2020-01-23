@@ -57,6 +57,8 @@ const styles =  {
     tableCard: {
         textAlign: 'center',
         width: 'auto',
+        maxHeight: '500px',
+        overflow: 'auto'
     },
     topMargin: {
         marginTop: '100px'
@@ -98,7 +100,6 @@ class FavoritesDetails extends Component {
 
         return (
             <div className={classes.topMargin}>
-                {JSON.stringify(this.props.detailsReducer)}
                 <Typography variant="h2" className={classes.pageTitleCenter}>
                     Favorite Brewery Details
                 </Typography>
