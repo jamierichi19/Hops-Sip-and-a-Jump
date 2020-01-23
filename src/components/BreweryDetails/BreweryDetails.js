@@ -71,7 +71,7 @@ class BreweryDetails extends Component {
 
     state = {
         comment: '',
-        liked: false,
+        liked: '',
         id: this.props.detailsReducer.id     
     }
 
@@ -112,7 +112,7 @@ class BreweryDetails extends Component {
 
         const { classes } = this.props;
 
-        const likeBrewery = this.state.liked === false  ? (
+        const likeBrewery = this.props.likeReducer.length < 1  ? (
             <div className={classes.container}>
                 <Button 
                 variant="contained"
@@ -232,6 +232,7 @@ class BreweryDetails extends Component {
 const putReduxStateOnProps = (reduxStore) => ({
     detailsReducer: reduxStore.detailsReducer,
     commentsReducer: reduxStore.commentsReducer,
+    likeReducer: reduxStore.likeReducer,
   });
 
 export default connect(putReduxStateOnProps)(withStyles(styles)(BreweryDetails));

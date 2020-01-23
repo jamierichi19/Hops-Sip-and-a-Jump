@@ -70,6 +70,7 @@ class Search extends Component {
     getDetailsAndComments = (id) => {
       this.props.dispatch({type: 'GET_DETAILS', payload: id});
       this.props.dispatch({type: 'GET_BREWERY_COMMENTS', payload: id});
+      this.props.dispatch({ type: 'GET_LIKE', payload: id});
     }
 
     render() {
