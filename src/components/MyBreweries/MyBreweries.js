@@ -65,20 +65,24 @@ const styles =  {
 class MyBreweries extends Component {
 
     state = {
-        open: false
+        open: false,
+        id: ''
     }
 
     componentDidMount() {
         this.props.dispatch({type: 'GET_BREWERY_IMAGE'});
     }
 
-    deleteItem = (id) => {
-        this.props.dispatch({type: 'DELETE_BREWERY', payload: id})
+    deleteItem = () => {
+        this.props.dispatch({type: 'DELETE_BREWERY', payload: this.state.id})
         this.setState({open: false})
     }
 
-    handleClickOpen = () => {
-        this.setState({ open: true });
+    handleClickOpen = (id) => {
+        this.setState({ 
+            open: true,
+            id: id
+        });
       };
     
     handleClose = () => {
@@ -107,8 +111,8 @@ class MyBreweries extends Component {
             <Grid container spacing={4} justify="center">
                 {this.props.imageReducer.map((item, i) => {
                     return (
-                        <Grid item  key={item.id}  >
-                            <Card className={classes.card}>
+                        <Grid item key={item.id}>
+                            <Card className={classes.card} >
                                 <CardContent>
                                     <div className={classes.spacing}>{item.brewery_name}</div>
                                     <Link to="/details">
@@ -116,14 +120,17 @@ class MyBreweries extends Component {
                                     </Link>
                                     <br />
                                     <Button
-                                        onClick={this.handleClickOpen}
+                                        onClick={() => this.handleClickOpen(item.id)}
+                                        // onClick={() => this.deleteItem(item.id)}
                                         variant="contained"
                                         color="secondary"
                                         className={classes.removeButton}
                                     >
                                         <RemoveIcon className={classes.leftIcon} />
-                                        Brewery
+                                        Brewery {item.id}
                                     </Button>
+                                    
+                                    
                                     <Dialog
                                     open={this.state.open}
                                     onClose={this.handleClose}
@@ -136,7 +143,7 @@ class MyBreweries extends Component {
                                         </DialogContent>
                                         <DialogActions>
                                             <Button onClick={this.handleClose}>Cancel</Button>
-                                            <Button onClick={() => this.deleteItem(item.id)}>Remove</Button>
+                                            <Button onClick={() => this.deleteItem()}>Remove</Button>
                                         </DialogActions>
                                     </Dialog>
                                 </CardContent>
