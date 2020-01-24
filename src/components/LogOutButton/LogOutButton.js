@@ -7,7 +7,7 @@ const LogOutButton = props => (
   <Button
     className={props.className}
     onClick={() => props.dispatch({ type: 'LOGOUT' })}
-    style={{color: "#ff8c00"}}
+    style={{color: "white"}}
   >
     Log Out
   </Button>

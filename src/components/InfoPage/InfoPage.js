@@ -82,6 +82,7 @@ class InfoPage extends Component {
                                    image={item.image_url} alt={item.id} />
                                   
                                   <Link to="/favorites-details">
+                                    <Grid>
                                     <Button
                                     variant="contained"
                                     color="primary"
@@ -90,6 +91,7 @@ class InfoPage extends Component {
                                     >
                                       Veiw Details
                                     </Button>
+                                    </Grid>
                                   </Link>
                               </CardContent>
                           </Card>
