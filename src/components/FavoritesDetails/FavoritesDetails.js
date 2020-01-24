@@ -19,6 +19,7 @@ import TableRow from '@material-ui/core/TableRow';
 //Material UI Icons
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddCommentIcon from '@material-ui/icons/AddComment';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const styles =  {
     pageTitleCenter: {
@@ -94,9 +95,51 @@ class FavoritesDetails extends Component {
         this.props.dispatch({type: 'UNLIKE_BREWERY', payload: id })
     }
 
+    goBack = () => {
+        this.props.history.push('/favorites')
+    }
+
     render() {
 
         const { classes } = this.props;
+
+        const commentTable = this.props.commentsReducer.length >= 1 ? (
+            <Grid
+            container           
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justify="center"
+            style={{ minHeight: '50vh' }}>
+                <Grid item>
+                    <Card className={classes.tableCard}>
+                        <CardContent>
+                            <Table className={classes.table}>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>Username</TableCell>
+                                        <TableCell>Comments</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {this.props.commentsReducer.map((item) => {
+                                        return (
+                                            <TableRow key={item.comment_id}>
+                                                <TableCell>{item.username}</TableCell>
+                                                <TableCell>{item.comment_body}</TableCell>
+                                            </TableRow>
+                                            
+                                        )})
+                                    }
+                                </TableBody>
+                            </Table>
+                        </CardContent>
+                    </Card>
+                </Grid>
+            </Grid>
+          ) : ( 
+        <p>{''}</p>
+          );
 
         return (
             <div className={classes.topMargin}>
@@ -150,37 +193,16 @@ class FavoritesDetails extends Component {
                         <AddCommentIcon className={classes.leftIcon} />
                         Comment
                     </Button>
-                    <Grid
-                    container           
-                    spacing={0}
-                    direction="column"
-                    alignItems="center"
-                    justify="center"
-                    style={{ minHeight: '50vh' }}>
+                    {commentTable}
+                    <Grid container justify='center'>
                         <Grid item>
-                            <Card className={classes.tableCard}>
-                                <CardContent>
-                                    <Table className={classes.table}>
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell>Username</TableCell>
-                                                <TableCell>Comments</TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            {this.props.commentsReducer.map((item) => {
-                                                return (
-                                                    <TableRow key={item.comment_id}>
-                                                        <TableCell>{item.username}</TableCell>
-                                                        <TableCell>{item.comment_body}</TableCell>
-                                                    </TableRow>
-                                                    
-                                                )})
-                                            }
-                                        </TableBody>
-                                    </Table>
-                                </CardContent>
-                            </Card>
+                            <Button
+                            variant="contained"
+                            color="secondary"
+                            onClick={this.goBack}>
+                                <ArrowBackIcon className={classes.leftIcon} />
+                                Back
+                            </Button>
                         </Grid>
                     </Grid>
                 </div>

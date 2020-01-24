@@ -138,6 +138,44 @@ class BreweryDetails extends Component {
             </div>
           );
 
+          const commentTable = this.props.commentsReducer.length >= 1 ? (
+            <Grid
+            container           
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justify="center"
+            >
+                <Grid item>
+                    <Card className={classes.tableCard}>
+                        <CardContent>
+                            <Table className={classes.table}>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>Username</TableCell>
+                                        <TableCell>Comments</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {this.props.commentsReducer.map((item) => {
+                                        return (
+                                            <TableRow key={item.comment_id}>
+                                                <TableCell>{item.username}</TableCell>
+                                                <TableCell>{item.comment_body}</TableCell>
+                                            </TableRow>
+                                            
+                                        )})
+                                    }
+                                </TableBody>
+                            </Table>
+                        </CardContent>
+                    </Card>
+                </Grid>
+            </Grid>
+          ) : ( 
+        <p>{''}</p>
+          );
+
         return (
             <div>
                 <Typography variant="h2" className={classes.pageTitleCenter}>
@@ -180,39 +218,9 @@ class BreweryDetails extends Component {
                         <AddComment className={classes.leftIcon} />
                         Comment
                     </Button>
-                    <Grid
-                    container           
-                    spacing={0}
-                    direction="column"
-                    alignItems="center"
-                    justify="center"
-                    style={{ minHeight: '50vh' }}>
-                        <Grid item>
-                            <Card className={classes.tableCard}>
-                                <CardContent>
-                                    <Table className={classes.table}>
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell>Username</TableCell>
-                                                <TableCell>Comments</TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            {this.props.commentsReducer.map((item) => {
-                                                return (
-                                                    <TableRow key={item.comment_id}>
-                                                        <TableCell>{item.username}</TableCell>
-                                                        <TableCell>{item.comment_body}</TableCell>
-                                                    </TableRow>
-                                                    
-                                                )})
-                                            }
-                                        </TableBody>
-                                    </Table>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                    </Grid>
+                    
+                    {commentTable}
+                    
                 </div>
                 <div className={classes.container}>
                     <Button
