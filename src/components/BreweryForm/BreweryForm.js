@@ -66,7 +66,7 @@ class BreweryForm extends Component {
     // REMOVE BEFORE ALL BUT THE PART THAT SETS STATE TO TRUE BEFORE TURNING IN/USING 
     handleClickOpen = () => {
         this.setState({ 
-            name: 'Super Dope Brewery Co',
+            name: 'Super Dope Brewering Co.',
             bio: 'Come check out our super dope beers!',
             street: '123 Street N',
             city: 'Brooklyn Park',

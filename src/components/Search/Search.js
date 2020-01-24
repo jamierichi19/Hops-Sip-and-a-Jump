@@ -21,8 +21,7 @@ const styles =  {
   },
   button: {
     marginBottom: '10px',
-    marginLeft: '55px',
-    marginTop: '10px'
+    marginTop: '20px'
   },
   card: {
       width: 300,
@@ -35,7 +34,7 @@ const styles =  {
     marginBottom: '10px',
     width: 200,
   },
-  button: {
+  searchButton: {
     marginBottom: '10px',
     marginLeft: '20px',
     marginTop: '10px'
@@ -95,7 +94,7 @@ class Search extends Component {
                 <Button
                 variant="contained"
                 color="primary"
-                className={classes.button}
+                className={classes.searchButton}
                 onClick={this.searchBrewery}
                 >
                   <SearchIcon />
@@ -111,16 +110,19 @@ class Search extends Component {
                                   <div>{item.city}</div>
                                   <CardMedia className={classes.media}
                                    image={item.image_url} alt={item.id} />
-                                  
-                                  <Link to="/brewery-details">
-                                    <Button
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.button}
-                                    onClick={() => this.getDetailsAndComments(item.id)}
-                                    >
-                                      Veiw Details
-                                    </Button>
+                                  <Link to="/brewery-details" style={{textDecoration: "none"}}>
+                                    <Grid container style={{justifyContent: "center"}}>
+                                      <Grid item>
+                                        <Button
+                                        variant="contained"
+                                        color="primary"
+                                        className={classes.button}
+                                        onClick={() => this.getDetailsAndComments(item.id)}
+                                        >
+                                          Veiw Details
+                                        </Button>
+                                      </Grid>
+                                    </Grid>
                                   </Link>
                               </CardContent>
                           </Card>

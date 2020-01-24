@@ -110,7 +110,7 @@ class FavoritesDetails extends Component {
             direction="column"
             alignItems="center"
             justify="center"
-            style={{ minHeight: '50vh' }}>
+            >
                 <Grid item>
                     <Card className={classes.tableCard}>
                         <CardContent>
