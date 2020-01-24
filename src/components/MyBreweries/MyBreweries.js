@@ -29,7 +29,6 @@ const styles =  {
     },
     button: {
       marginBottom: '10px',
-      marginLeft: '55px',
       marginTop: '10px'
     },
     visibleSeperator: {
@@ -119,16 +118,19 @@ class MyBreweries extends Component {
                                         <CardMedia className={classes.media }image={item.image_url} alt={item.id}  />
                                     </Link>
                                     <br />
-                                    <Button
-                                        onClick={() => this.handleClickOpen(item.id)}
-                                        // onClick={() => this.deleteItem(item.id)}
-                                        variant="contained"
-                                        color="secondary"
-                                        className={classes.removeButton}
-                                    >
-                                        <RemoveIcon className={classes.leftIcon} />
-                                        Brewery {item.id}
-                                    </Button>
+                                    <Grid container style={{justifyContent: "center"}}>
+                                        <Grid item>
+                                            <Button
+                                                onClick={() => this.handleClickOpen(item.id)}
+                                                variant="contained"
+                                                color="secondary"
+                                                className={classes.removeButton}
+                                                >
+                                                <RemoveIcon className={classes.leftIcon} />
+                                                Brewery
+                                            </Button>
+                                        </Grid>
+                                    </Grid>
                                     
                                     
                                     <Dialog

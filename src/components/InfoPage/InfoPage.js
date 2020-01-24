@@ -34,9 +34,7 @@ const styles =  {
     width: 200,
   },
   button: {
-    marginBottom: '10px',
-    marginLeft: '20px',
-    marginTop: '10px'
+    marginTop: '20px'
   },
   container: {
     textAlign: 'center'
@@ -81,16 +79,18 @@ class InfoPage extends Component {
                                   <CardMedia className={classes.media}
                                    image={item.image_url} alt={item.id} />
                                   
-                                  <Link to="/favorites-details">
-                                    <Grid>
-                                    <Button
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.button}
-                                    onClick={() => this.getDetailsAndComments(item.id)}
-                                    >
-                                      Veiw Details
-                                    </Button>
+                                  <Link to="/favorites-details" style={{textDecoration: "none"}}>
+                                    <Grid container style={{justifyContent: "center"}}>
+                                      <Grid item>
+                                        <Button
+                                        variant="contained"
+                                        color="primary"
+                                        className={classes.button}
+                                        onClick={() => this.getDetailsAndComments(item.id)}
+                                        >
+                                          Veiw Details
+                                        </Button>
+                                      </Grid>
                                     </Grid>
                                   </Link>
                               </CardContent>
