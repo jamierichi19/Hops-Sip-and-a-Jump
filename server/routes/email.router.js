@@ -26,7 +26,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 //POST Route to send email
 router.post('/', rejectUnauthenticated, (req, res) => {
     let emailArray = req.body.emailList;
-    console.log(req.body)
     let emailList = []
 
     emailArray.forEach((element) => {
