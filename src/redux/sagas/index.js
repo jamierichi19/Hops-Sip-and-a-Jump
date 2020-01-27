@@ -14,6 +14,7 @@ import likeBrewerySaga from './likeBrewerySaga';
 import unlikeBrewerySaga from './unlikeBrewerySaga';
 import getFavoritesSaga from './getFavoritesSaga';
 import getEmailSaga from './getEmailSaga';
+import getLikeSaga from './getLikeSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -39,5 +40,6 @@ export default function* rootSaga() {
     unlikeBrewerySaga(),
     getFavoritesSaga(),
     getEmailSaga(),
+    getLikeSaga(),
   ]);
 }

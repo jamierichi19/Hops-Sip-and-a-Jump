@@ -12,6 +12,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+//Material UI Icons
+import AddIcon from '@material-ui/icons/Add';
+
 
 const styles =  {
     container: {
@@ -41,6 +44,9 @@ const styles =  {
     },
     topMargin: {
         marginTop: '100px'
+    },
+    leftIcon: {
+        marginRight: '5px'
     }
   };
 
@@ -54,10 +60,19 @@ class BreweryForm extends Component {
         state: '',
         zip: '',
         open: false
-    };
+    }
 
+    // SETTING STATE TO FIXED FOR PRESENTATION...........
+    // REMOVE BEFORE ALL BUT THE PART THAT SETS STATE TO TRUE BEFORE TURNING IN/USING 
     handleClickOpen = () => {
-        this.setState({ open: true });
+        this.setState({ 
+            name: 'Super Dope Brewing Co.',
+            bio: 'Come check out our super dope beers!',
+            street: '123 Street N',
+            city: 'Brooklyn Park',
+            state: 'MN',
+            zip: '55444',
+            open: true });
       };
     
     handleClose = () => {
@@ -113,7 +128,9 @@ class BreweryForm extends Component {
                     color="primary"
                     className={classes.addButton}
                     onClick={this.handleClickOpen}
-                    >Add A Brewery
+                    >
+                        <AddIcon className={classes.leftIcon} />
+                        Brewery
                     </Button>
                     </div>
                 </div>
@@ -131,7 +148,7 @@ class BreweryForm extends Component {
                                 name="name"
                                 label="Name of brewery"
                                 variant="outlined"
-                                value={this.state.name}
+                                value={'Super Dope Brewing Co.'}
                                 className={classes.textField}
                                 onChange={this.handleInputChangeFor('name')}
                             />
@@ -144,7 +161,7 @@ class BreweryForm extends Component {
                                 rows="4"
                                 variant="outlined"
                                 label="Enter a short bio"
-                                value={this.state.bio}
+                                value={'Come check out our super dope beers!'}
                                 className={classes.textField}
                                 onChange={this.handleInputChangeFor('bio')}
                             />
@@ -155,7 +172,7 @@ class BreweryForm extends Component {
                                 name="street"
                                 label="Street"
                                 variant="outlined"
-                                value={this.state.street}
+                                value={'123 Street N'}
                                 className={classes.textField}
                                 onChange={this.handleInputChangeFor('street')}
                             />
@@ -166,7 +183,7 @@ class BreweryForm extends Component {
                                 name="city"
                                 label="city"
                                 variant="outlined"
-                                value={this.state.city}
+                                value={'Brooklyn Park'}
                                 className={classes.textField}
                                 onChange={this.handleInputChangeFor('city')}
                             />
@@ -176,7 +193,7 @@ class BreweryForm extends Component {
                                 name="state"
                                 label="State"
                                 variant="outlined"
-                                value={this.state.state}
+                                value={'MN'}
                                 className={classes.textField}
                                 onChange={this.handleInputChangeFor('state')}
                             />
@@ -186,7 +203,7 @@ class BreweryForm extends Component {
                                 name="zip"
                                 label="Zip"
                                 variant="outlined"
-                                value={this.state.zip}
+                                value={55444}
                                 className={classes.textField}
                                 onChange={this.handleInputChangeFor('zip')}
                             />

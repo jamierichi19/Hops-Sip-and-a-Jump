@@ -29,7 +29,19 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     "brewery_info"."zip","brewery_info"."image_url", "brewery_info"."id" FROM "brewery_info"
     JOIN "favorites" on "favorites"."brewery_id" = "brewery_info"."id"
     JOIN "user" on "user"."id" = "favorites"."user_id"
-    WHERE "user"."id" = $1`
+    WHERE "user"."id" = $1;`
+    pool.query(sqlText, [id])
+        .then(results => res.send(results.rows))
+        .catch(error => {
+            console.log('Error GETTING comments:', error);
+            res.sendStatus(500);
+    });
+});
+
+//GET route for likes
+router.get('/favorite/:id', rejectUnauthenticated, (req, res) => {
+    const id = req.params.id;
+    const sqlText = `SELECT * FROM "favorites" WHERE "brewery_id" = $1;`
     pool.query(sqlText, [id])
         .then(results => res.send(results.rows))
         .catch(error => {

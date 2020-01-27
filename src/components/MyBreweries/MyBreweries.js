@@ -16,6 +16,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+//Material UI Icons
+import RemoveIcon from '@material-ui/icons/Remove';
 
 const styles =  {
     pageTitle: {
@@ -27,7 +29,6 @@ const styles =  {
     },
     button: {
       marginBottom: '10px',
-      marginLeft: '55px',
       marginTop: '10px'
     },
     visibleSeperator: {
@@ -53,6 +54,9 @@ const styles =  {
     },
     gridCenter: {
         alignContent: "center",
+    },
+    leftIcon: {
+        marginRight: '5px'
     }
   };
 
@@ -60,20 +64,24 @@ const styles =  {
 class MyBreweries extends Component {
 
     state = {
-        open: false
+        open: false,
+        id: ''
     }
 
     componentDidMount() {
         this.props.dispatch({type: 'GET_BREWERY_IMAGE'});
     }
 
-    deleteItem = (id) => {
-        this.props.dispatch({type: 'DELETE_BREWERY', payload: id})
+    deleteItem = () => {
+        this.props.dispatch({type: 'DELETE_BREWERY', payload: this.state.id})
         this.setState({open: false})
     }
 
-    handleClickOpen = () => {
-        this.setState({ open: true });
+    handleClickOpen = (id) => {
+        this.setState({ 
+            open: true,
+            id: id
+        });
       };
     
     handleClose = () => {
@@ -102,22 +110,29 @@ class MyBreweries extends Component {
             <Grid container spacing={4} justify="center">
                 {this.props.imageReducer.map((item, i) => {
                     return (
-                        <Grid item  key={item.id}  >
-                            <Card className={classes.card}>
+                        <Grid item key={item.id}>
+                            <Card className={classes.card} >
                                 <CardContent>
                                     <div className={classes.spacing}>{item.brewery_name}</div>
                                     <Link to="/details">
                                         <CardMedia className={classes.media }image={item.image_url} alt={item.id}  />
                                     </Link>
                                     <br />
-                                    <Button
-                                        onClick={this.handleClickOpen}
-                                        variant="contained"
-                                        color="secondary"
-                                        className={classes.removeButton}
-                                    >
-                                    Remove
-                                    </Button>
+                                    <Grid container style={{justifyContent: "center"}}>
+                                        <Grid item>
+                                            <Button
+                                                onClick={() => this.handleClickOpen(item.id)}
+                                                variant="contained"
+                                                color="secondary"
+                                                className={classes.removeButton}
+                                                >
+                                                <RemoveIcon className={classes.leftIcon} />
+                                                Brewery
+                                            </Button>
+                                        </Grid>
+                                    </Grid>
+                                    
+                                    
                                     <Dialog
                                     open={this.state.open}
                                     onClose={this.handleClose}
@@ -130,7 +145,7 @@ class MyBreweries extends Component {
                                         </DialogContent>
                                         <DialogActions>
                                             <Button onClick={this.handleClose}>Cancel</Button>
-                                            <Button onClick={() => this.deleteItem(item.id)}>Remove</Button>
+                                            <Button onClick={() => this.deleteItem()}>Remove</Button>
                                         </DialogActions>
                                     </Dialog>
                                 </CardContent>

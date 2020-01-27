@@ -9,7 +9,6 @@ import {
 import {connect} from 'react-redux';
 
 import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
@@ -21,6 +20,21 @@ import FavoritesDetails from '../FavoritesDetails/FavoritesDetails';
 
 import './App.css';
 
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#ffcc00'
+    },
+    secondary: {
+      main: '#ff8c00',
+    },
+  },
+ 
+});
+
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
@@ -28,6 +42,7 @@ class App extends Component {
 
   render() {
     return (
+      <MuiThemeProvider theme={theme}>
       <Router>
         <div>
           <Nav />
@@ -70,9 +85,9 @@ class App extends Component {
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
-          <Footer />
         </div>
       </Router>
+      </MuiThemeProvider>
   )}
 }
 

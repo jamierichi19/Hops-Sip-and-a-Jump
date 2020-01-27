@@ -31,7 +31,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 
 //DELETE route for removing brewery
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
-    pool.query(`DELETE FROM "brewery_info"  WHERE "id" = $1`, [req.params.id])
+    pool.query(`DELETE FROM "brewery_info" WHERE "id" = $1;`, [req.params.id])
     .then(()=> res.sendStatus(200))
     .catch(() => res.sendStatus(500))
 });

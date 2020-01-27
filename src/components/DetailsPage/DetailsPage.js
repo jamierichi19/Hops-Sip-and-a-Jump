@@ -15,6 +15,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Grid from '@material-ui/core/Grid';
 
+//Material UI Icons
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import EditIcon from '@material-ui/icons/Edit';
+
 const styles =  {
     card: {
       minWidth: 275,
@@ -24,6 +28,8 @@ const styles =  {
     tableCard: {
         textAlign: 'center',
         width: 'auto',
+        maxHeight: '500px',
+        overflow: 'auto'
     },
     pageTitle: {
       margin: '20px auto 20px auto',
@@ -56,6 +62,9 @@ const styles =  {
     },
     topMargin: {
         marginTop: '100px'
+    },
+    leftIcon: {
+        marginRight: '5px'
     }
   };
 
@@ -135,7 +144,8 @@ class DetailsPage extends Component {
                                 className={classes.button}
                                 color="primary"
                                 >
-                                Edit Details
+                                    <EditIcon className={classes.leftIcon} />
+                                    Edit Details
                                 </Button>
                             </CardContent>
                         </Card>
@@ -304,7 +314,8 @@ class DetailsPage extends Component {
                             color="secondary"
                             onClick={this.goBack}
                             >
-                            Back
+                                <ArrowBackIcon className={classes.leftIcon} />
+                                Back
                             </Button>
                         </div>
                     </div>

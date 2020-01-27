@@ -15,11 +15,17 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+// Material UI Icons
+import AddComment from '@material-ui/icons/AddComment';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const styles =  {
     pageTitleCenter: {
         margin: '20px auto 20px auto',
-        textAlign: 'center'
+        textAlign: 'center',
+        marginTop: '100px'
     },
     button: {
       marginBottom: '10px',
@@ -53,29 +59,31 @@ const styles =  {
     tableCard: {
         textAlign: 'center',
         width: 'auto',
+        maxHeight: '500px',
+        overflow: 'auto'
     },
-    
+    leftIcon: {
+        marginRight: '5px'
+    }
   };
 
 class BreweryDetails extends Component {
 
     state = {
         comment: '',
-        breweryId: '',
-        liked: false,
+        liked: '',
         id: this.props.detailsReducer.id     
     }
 
     handleInputChangeFor = propertyName => (event) => {
         this.setState({
           [propertyName]: event.target.value,
-          breweryId: this.props.detailsReducer.id
         });
     }
 
     addComment = (id) => {
         this.props.dispatch({ type: 'ADD_COMMENT', 
-        payload: {id: this.props.detailsReducer.id, comment: this.state.comment, breweryId: this.state.breweryId}
+        payload: {id: this.props.detailsReducer.id, comment: this.state.comment}
     });
     this.setState({
         comment: ''
@@ -104,14 +112,16 @@ class BreweryDetails extends Component {
 
         const { classes } = this.props;
 
-        const likeBrewery = this.state.liked === false  ? (
+        const likeBrewery = this.props.likeReducer.length < 1  ? (
             <div className={classes.container}>
                 <Button 
                 variant="contained"
                 color="primary"
                 className={classes.button}
                 onClick={() => this.likeBrewery(this.props.detailsReducer.id)}
-                >Add to Favorites
+                >
+                    <AddIcon className={classes.leftIcon} />
+                    Favorites
                 </Button>
             </div>
           ) : ( 
@@ -121,9 +131,49 @@ class BreweryDetails extends Component {
                 color="secondary"
                 className={classes.button}
                 onClick={() => this.unlikeBrewery(this.props.detailsReducer.id)}
-                >Remove from Favorites
+                >
+                    <RemoveIcon className={classes.leftIcon} />
+                    Favorites
                 </Button>
             </div>
+          );
+
+          const commentTable = this.props.commentsReducer.length >= 1 ? (
+            <Grid
+            container           
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justify="center"
+            >
+                <Grid item>
+                    <Card className={classes.tableCard}>
+                        <CardContent>
+                            <Table className={classes.table}>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>Username</TableCell>
+                                        <TableCell>Comments</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {this.props.commentsReducer.map((item) => {
+                                        return (
+                                            <TableRow key={item.comment_id}>
+                                                <TableCell>{item.username}</TableCell>
+                                                <TableCell>{item.comment_body}</TableCell>
+                                            </TableRow>
+                                            
+                                        )})
+                                    }
+                                </TableBody>
+                            </Table>
+                        </CardContent>
+                    </Card>
+                </Grid>
+            </Grid>
+          ) : ( 
+        <p>{''}</p>
           );
 
         return (
@@ -163,43 +213,14 @@ class BreweryDetails extends Component {
                         variant="contained"
                         color="primary"
                         className={classes.button}
-                        onClick={() => this.addComment(this.state.breweryId)}
+                        onClick={() => this.addComment(this.props.detailsReducer.id)}
                         >
-                        Add Comment
+                        <AddComment className={classes.leftIcon} />
+                        Comment
                     </Button>
-                    <Grid
-                    container           
-                    spacing={0}
-                    direction="column"
-                    alignItems="center"
-                    justify="center"
-                    style={{ minHeight: '50vh' }}>
-                        <Grid item>
-                            <Card className={classes.tableCard}>
-                                <CardContent>
-                                    <Table className={classes.table}>
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell>Username</TableCell>
-                                                <TableCell>Comments</TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            {this.props.commentsReducer.map((item) => {
-                                                return (
-                                                    <TableRow key={item.comment_id}>
-                                                        <TableCell>{item.username}</TableCell>
-                                                        <TableCell>{item.comment_body}</TableCell>
-                                                    </TableRow>
-                                                    
-                                                )})
-                                            }
-                                        </TableBody>
-                                    </Table>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                    </Grid>
+                    
+                    {commentTable}
+                    
                 </div>
                 <div className={classes.container}>
                     <Button
@@ -207,7 +228,9 @@ class BreweryDetails extends Component {
                     color="secondary"
                     className={classes.button}
                     onClick={this.goBack}
-                    >Back</Button>
+                    >
+                        <ArrowBackIcon className={classes.leftIcon} />
+                        Back</Button>
                 </div>
             </div>
         )
@@ -217,6 +240,7 @@ class BreweryDetails extends Component {
 const putReduxStateOnProps = (reduxStore) => ({
     detailsReducer: reduxStore.detailsReducer,
     commentsReducer: reduxStore.commentsReducer,
+    likeReducer: reduxStore.likeReducer,
   });
 
 export default connect(putReduxStateOnProps)(withStyles(styles)(BreweryDetails));

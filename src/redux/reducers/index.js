@@ -7,6 +7,7 @@ import commentsReducer from './commentsReducer';
 import searchReducer from './searchReducer';
 import detailsReducer from './detailsReducer';
 import favoritesReducer from './favoritesReducer';
+import likeReducer from './likeReducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
   commentsReducer,
   searchReducer,
   detailsReducer,
-  favoritesReducer
+  favoritesReducer,
+  likeReducer,
 });
 
 export default rootReducer;

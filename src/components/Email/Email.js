@@ -13,6 +13,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+//Material UI Icons
+import SendIcon from '@material-ui/icons/Send';
 
 const styles =  {
     form: {
@@ -29,6 +31,9 @@ const styles =  {
     button: {
       marginBottom: '10px',
       marginTop: '10px'
+    },
+    leftIcon: {
+      marginRight: '5px'
     }
   };
 
@@ -106,7 +111,8 @@ class Email extends Component {
                     color="primary"
                     onClick={this.handleClickOpen}
                     >
-                    Send
+                      <SendIcon className={classes.leftIcon} />
+                      Send
                     </Button>
                     <Dialog
                     open={this.state.open}

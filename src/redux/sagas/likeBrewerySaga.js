@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 
 function* postLike(action){
     try{
-        console.log(action.payload)
         yield axios.post(`/api/like`, action.payload);
+        yield put({type: 'GET_LIKE', payload: action.payload.id})
     } catch (error){
         console.log(error)
     }
