@@ -27,7 +27,7 @@ CREATE TABLE "favorites" (
 CREATE TABLE "comments" (
 	"comment_id" SERIAL PRIMARY KEY,
 	"user_id" INT REFERENCES "user",
+	"brewery_id" INT REFERENCES "brewery_info",
 	"comment_body" VARCHAR (500),
 	"flag" BOOLEAN 
 );
-

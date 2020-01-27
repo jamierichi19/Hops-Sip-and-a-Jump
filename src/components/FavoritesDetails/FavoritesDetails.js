@@ -199,6 +199,7 @@ class FavoritesDetails extends Component {
                             <Button
                             variant="contained"
                             color="secondary"
+                            className={classes.button}
                             onClick={this.goBack}>
                                 <ArrowBackIcon className={classes.leftIcon} />
                                 Back
