@@ -62,16 +62,8 @@ class BreweryForm extends Component {
         open: false
     }
 
-    // SETTING STATE TO FIXED FOR PRESENTATION...........
-    // REMOVE BEFORE ALL BUT THE PART THAT SETS STATE TO TRUE BEFORE TURNING IN/USING 
     handleClickOpen = () => {
         this.setState({ 
-            name: 'Super Dope Brewing Co.',
-            bio: 'Come check out our super dope beers!',
-            street: '123 Street N',
-            city: 'Brooklyn Park',
-            state: 'MN',
-            zip: '55444',
             open: true });
       };
     
@@ -148,7 +140,7 @@ class BreweryForm extends Component {
                                 name="name"
                                 label="Name of brewery"
                                 variant="outlined"
-                                value={'Super Dope Brewing Co.'}
+                                value={this.state.name}
                                 className={classes.textField}
                                 onChange={this.handleInputChangeFor('name')}
                             />
@@ -161,7 +153,7 @@ class BreweryForm extends Component {
                                 rows="4"
                                 variant="outlined"
                                 label="Enter a short bio"
-                                value={'Come check out our super dope beers!'}
+                                value={this.state.bio}
                                 className={classes.textField}
                                 onChange={this.handleInputChangeFor('bio')}
                             />
@@ -172,7 +164,7 @@ class BreweryForm extends Component {
                                 name="street"
                                 label="Street"
                                 variant="outlined"
-                                value={'123 Street N'}
+                                value={this.state.street}
                                 className={classes.textField}
                                 onChange={this.handleInputChangeFor('street')}
                             />
@@ -183,7 +175,7 @@ class BreweryForm extends Component {
                                 name="city"
                                 label="city"
                                 variant="outlined"
-                                value={'Brooklyn Park'}
+                                value={this.state.city}
                                 className={classes.textField}
                                 onChange={this.handleInputChangeFor('city')}
                             />
@@ -193,7 +185,7 @@ class BreweryForm extends Component {
                                 name="state"
                                 label="State"
                                 variant="outlined"
-                                value={'MN'}
+                                value={this.state.state}
                                 className={classes.textField}
                                 onChange={this.handleInputChangeFor('state')}
                             />
@@ -203,7 +195,7 @@ class BreweryForm extends Component {
                                 name="zip"
                                 label="Zip"
                                 variant="outlined"
-                                value={55444}
+                                value={this.state.zip}
                                 className={classes.textField}
                                 onChange={this.handleInputChangeFor('zip')}
                             />
